@@ -3,12 +3,12 @@
 // kho: [tên, mã hệ, tầng 1-3, trạng thái, ưu tiên 0-3, tự tin, E/N, cập nhật, id bài, id trang]
 window.NOTION_DATA = {
   snapshot: "2026-09-26",
-  generatedAt: "2026-09-26T16:52:46.938Z",
+  generatedAt: "2026-09-26T16:56:15.985Z",
   chapters: {"NT":"Nội tiết","TH":"Tiêu hóa","TM":"Tim mạch","HH":"Hô hấp","TN":"Thận – Niệu","TK":"Thần kinh","CX":"Cơ xương khớp","MA":"Máu – Bạch huyết","MD":"Miễn dịch","SP":"Sản phụ khoa","TT":"Tâm thần","DA":"Da","DC":"Đa cơ quan & Khác","BS":"Nhóm bổ sung"},
   rows: [
     ["Rối loạn đường huyết","NT","T","2026-09-14","2026-09-15","3c8cb1425c8180d6b9e1e094e26e1ed1",2,0,0,"","","3cbcb1425c818102be96d7b72393e888"],
     ["Bất thường chức năng tuyến giáp","NT","T","2026-09-16","2026-09-17","3c8cb1425c81806b8178d43d6b99ead6",2,0,0,"","","3cbcb1425c81811fae31dd63086089ef"],
-    ["Hội chứng Cushing","NT","T","2026-09-21","2026-09-22","3c8cb1425c8180fd9fb9fa88bb1133d1",0,0,0,"","","3cbcb1425c8181c18836ddda6243bafd"],
+    ["Hội chứng Cushing","NT","T","2026-09-21","2026-09-22","3c8cb1425c8180fd9fb9fa88bb1133d1",2,0,0,"","","3cbcb1425c8181c18836ddda6243bafd"],
     ["Khối ở cổ","NT","T","2026-09-22","2026-09-21","3c9cb1425c8180b0a061dbbba5fe953c",0,0,0,"","","3cbcb1425c8181788bd1ef76f93975f8"],
     ["Rối loạn lipid máu","NT","T","2026-09-22","2026-09-22","3c9cb1425c8180ef8a51c898219a811f",2,0,0,"","","3cbcb1425c8181b4ac6aec45ca243c62"],
     ["Ôn tập tổng hợp — Hệ Nội tiết","NT","O","2026-11-07","2026-11-18","",0,0,0,"","","3cbcb1425c818121827ec888a546f7c6"],

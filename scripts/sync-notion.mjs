@@ -34,6 +34,7 @@ export const CH_LABEL = {
 const nfc = (s) => String(s).normalize("NFC");
 const plain = (arr) => (arr || []).map((t) => t.plain_text).join("").trim();
 const pid = (page) => String(page.id || "").replace(/-/g, "").toLowerCase();
+const le = (page) => (page.last_edited_time || "").slice(0, 10);
 const day = (d) => (d?.start ? d.start.slice(0, 10) : "");
 
 function props(page) {
@@ -64,7 +65,7 @@ export function rowMc(page) {
   if (!name) return null;
   return [name, CHN[nfc(p.sel("Chương"))] || "DC", nfc(p.sel("Loại")) === nfc("Ôn tập tổng hợp") ? "O" : "T",
     p.date("Ngày bắt đầu"), p.date("Ngày kết thúc"), hexId(p.url("Link bài học")), stOf(p.sel("Trạng thái")),
-    p.num("Mức tự tin (1-5)"), p.num("Số lần đã ôn tập"), p.date("Ngày ôn gần nhất"), p.text("Ghi chú / Bẫy MCQ"), pid(page)];
+    p.num("Mức tự tin (1-5)"), p.num("Số lần đã ôn tập"), p.date("Ngày ôn gần nhất"), p.text("Ghi chú / Bẫy MCQ"), pid(page), le(page)];
 }
 export function rowKho(page) {
   const p = props(page), name = p.title("Chủ đề / Bệnh học");
@@ -73,7 +74,7 @@ export function rowKho(page) {
   return [name, CHN[nfc(p.sel("Hệ cơ quan"))] || "DC", /cơ sở/i.test(nh) ? 1 : /Bệnh lý/.test(nh) ? 2 : /Khuyến cáo/.test(nh) ? 3 : 0,
     stOf(p.sel("Trạng thái học tập")), /Core/.test(pr) ? 1 : /Nên biết/.test(pr) ? 2 : /Tham khảo/.test(pr) ? 3 : 0,
     p.num("Mức tự tin (1-5)"), /Cấp cứu/.test(pl) ? "E" : /Thông thường/.test(pl) ? "N" : "",
-    (page.last_edited_time || "").slice(0, 10), pid(page), pid(page)];
+    le(page), pid(page), pid(page), le(page)];
 }
 export function rowRot(page) {
   const p = props(page), name = p.title("Khoa");
@@ -83,17 +84,45 @@ export function rowRot(page) {
 export function rowTop(page) {
   const p = props(page), name = p.title("Chủ đề");
   if (!name) return null;
-  return [name, p.sel("Khoa"), stOf(p.sel("Trạng thái")), p.sel("Mức ưu tiên"), p.text("Ghi chú"), pid(page), pid(page)];
+  return [name, p.sel("Khoa"), stOf(p.sel("Trạng thái")), p.sel("Mức ưu tiên"), p.text("Ghi chú"), pid(page), pid(page), le(page)];
 }
 export function rowCas(page) {
   const p = props(page), name = p.title("Tên ca / Mã ca");
   if (!name) return null;
-  return [name, p.sel("Khoa"), stOf(p.sel("Trạng thái ghi chép")), p.text("Chẩn đoán chính"), p.date("Ngày gặp"), p.check("Case đáng đào sâu"), pid(page), pid(page)];
+  return [name, p.sel("Khoa"), stOf(p.sel("Trạng thái ghi chép")), p.text("Chẩn đoán chính"), p.date("Ngày gặp"), p.check("Case đáng đào sâu"), pid(page), pid(page), le(page)];
 }
 export function rowDep(page) {
   const p = props(page), name = p.title("Tên chuyên đề");
   if (!name) return null;
-  return [name, p.sel("Khoa"), stOf(p.sel("Trạng thái")), p.text("Tuần học"), p.date("Ngày bắt đầu đào sâu"), pid(page), pid(page)];
+  return [name, p.sel("Khoa"), stOf(p.sel("Trạng thái")), p.text("Tuần học"), p.date("Ngày bắt đầu đào sâu"), pid(page), pid(page), le(page)];
+}
+
+// ---------- ghi ngày học xong thật ----------
+// Notion không lưu ngày bạn bấm "Đã học xong". Script tự ghi: lần đầu thấy bài chuyển sang Đã học xong
+// thì lấy ngày hôm đó (giờ Việt Nam); các lần sau giữ nguyên. Bài đã xong từ trước khi có ghi nhận
+// thì dùng ngày chỉnh sửa lần cuối làm ước lượng.
+const todayVN = () => new Date(Date.now() + 7 * 3600e3).toISOString().slice(0, 10);
+const SHAPE = {
+  mc:  { st: 6, pid: 11, done: 12 },
+  kho: { st: 3, pid: 9,  done: 10 },
+  top: { st: 2, pid: 6,  done: 7 },
+  cas: { st: 2, pid: 7,  done: 8 },
+  dep: { st: 2, pid: 6,  done: 7 },
+};
+export function trackDone(rows, oldRows, shape, today = todayVN()) {
+  const byPid = new Map(), byName = new Map();
+  for (const r of oldRows || []) { if (r[shape.pid]) byPid.set(r[shape.pid], r); byName.set(r[0], r); }
+  return rows.map((r) => {
+    const le = r[shape.done] || "";
+    const old = byPid.get(r[shape.pid]) || byName.get(r[0]);
+    let done = "";
+    if (r[shape.st] === 2) {
+      if (old && old[shape.st] === 2) done = old[shape.done] || le;
+      else if (old) done = today;
+      else done = le;
+    }
+    const out = r.slice(); out[shape.done] = done; return out;
+  });
 }
 
 // ---------- gọi Notion API ----------
@@ -142,8 +171,8 @@ function loadExisting() {
 export function renderData(d, generatedAt) {
   const arr = (rows) => "[\n" + rows.map((r) => "    " + JSON.stringify(r)).join(",\n") + "\n  ]";
   return `// TỰ ĐỘNG SINH bởi scripts/sync-notion.mjs - đừng sửa tay.
-// rows (125 chủ đề): [tên, mã hệ, loại T/O, bắt đầu, kết thúc, id bài học, trạng thái 0/1/2, tự tin, số lần ôn, ngày ôn gần nhất, ghi chú, id trang]
-// kho: [tên, mã hệ, tầng 1-3, trạng thái, ưu tiên 0-3, tự tin, E/N, cập nhật, id bài, id trang]
+// rows (125 chủ đề): [tên, mã hệ, loại T/O, bắt đầu, kết thúc, id bài học, trạng thái 0/1/2, tự tin, số lần ôn, ngày ôn gần nhất, ghi chú, id trang, ngày học xong]
+// kho: [tên, mã hệ, tầng 1-3, trạng thái, ưu tiên 0-3, tự tin, E/N, cập nhật, id bài, id trang, ngày học xong]
 window.NOTION_DATA = {
   snapshot: ${JSON.stringify(generatedAt.slice(0, 10))},
   generatedAt: ${JSON.stringify(generatedAt)},
@@ -182,6 +211,9 @@ export async function main() {
       console.log(`::warning title=Đồng bộ Notion::Nguồn ${key} lỗi, giữ dữ liệu cũ. Kiểm tra đã chia sẻ database cho integration chưa. ${e.message.slice(0, 120)}`);
     }
   }
+  const oldTh = old?.th || {};
+  const oldRows = { mc: old?.rows, kho: old?.kho, top: oldTh.topics, cas: oldTh.cases, dep: oldTh.deep };
+  for (const k of Object.keys(SHAPE)) if (got[k]) got[k] = trackDone(got[k], oldRows[k], SHAPE[k]);
   if (got.mc.length < 10) throw new Error(`Chỉ đọc được ${got.mc.length} dòng của 125 chủ đề. Có thể integration chưa được chia sẻ database. Dừng để không ghi đè dữ liệu.`);
   const keep = (key, fallback) => got[key] ?? fallback;
   const oth = old?.th || { rotations: [], topics: [], cases: [], deep: [] };

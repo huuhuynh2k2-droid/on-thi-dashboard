@@ -291,16 +291,16 @@ var DEMO=/[?&]demo=1/.test(location.search);
 
 /* ---- dữ liệu ---- */
 var mid=function(p,pid,name){return p+":"+(pid||name)};
-var mc=D.rows.map(function(r,i){return{i:i,id:mid("mc",r[11],r[0]),src:"mc",name:r[0],grp:r[1],type:r[2],bd:r[3]||"",kt:r[4]||"",link:r[5],st0:r[6],conf0:r[7]||0,rev0:r[8]||0,last0:r[9]||"",note0:r[10]||""}});
-var kho=(D.kho||[]).map(function(r,i){return{i:i,id:mid("kho",r[9],r[0]),src:"kho",name:r[0],grp:r[1],nhom:r[2],st0:r[3],pri:r[4],conf0:r[5]||0,pl:r[6],upd:r[7],link:r[8]}});
+var mc=D.rows.map(function(r,i){return{i:i,id:mid("mc",r[11],r[0]),src:"mc",name:r[0],grp:r[1],type:r[2],bd:r[3]||"",kt:r[4]||"",link:r[5],st0:r[6],conf0:r[7]||0,rev0:r[8]||0,last0:r[9]||"",note0:r[10]||"",done0:r[12]||""}});
+var kho=(D.kho||[]).map(function(r,i){return{i:i,id:mid("kho",r[9],r[0]),src:"kho",name:r[0],grp:r[1],nhom:r[2],st0:r[3],pri:r[4],conf0:r[5]||0,pl:r[6],upd:r[7],link:r[8],done0:r[10]||""}});
 var TH=D.th||{rotations:[],topics:[],cases:[],deep:[]};
 if(DEMO){TH={rotations:TH.rotations,
   topics:[["Đau bụng cấp ở bệnh nhân sau mổ (Mẫu)","Ngoại khoa",1,"Cao","","" ],["Chăm sóc vết mổ (Mẫu)","Ngoại khoa",2,"Trung bình","",""]],
   cases:[["CA-001 Viêm ruột thừa (Mẫu)","Ngoại khoa",2,"Viêm ruột thừa cấp",TODAY,0,""],["CA-002 Tắc ruột (Mẫu)","Ngoại khoa",1,"Tắc ruột do dính",TODAY,1,""]],
   deep:[["Kháng sinh dự phòng trước mổ (Mẫu)","Ngoại khoa",2,"Tuần 1",TODAY,""],["Bù dịch quanh phẫu thuật (Mẫu)","Ngoại khoa",1,"Tuần 1",TODAY,""]]}}
-var tht=TH.topics.map(function(r,i){return{i:i,id:mid("tht",r[6],r[0]),src:"th",kind:"topic",name:r[0],khoa:r[1],st0:r[2],pri:r[3],note0:r[4],link:r[5]}});
-var thc=TH.cases.map(function(r,i){return{i:i,id:mid("thc",r[7],r[0]),src:"th",kind:"case",name:r[0],khoa:r[1],st0:r[2],cd:r[3],date:r[4],deepq:r[5],link:r[6]}});
-var thd=TH.deep.map(function(r,i){return{i:i,id:mid("thd",r[6],r[0]),src:"th",kind:"deep",name:r[0],khoa:r[1],st0:r[2],week:r[3],date:r[4],link:r[5]}});
+var tht=TH.topics.map(function(r,i){return{i:i,id:mid("tht",r[6],r[0]),src:"th",kind:"topic",name:r[0],khoa:r[1],st0:r[2],pri:r[3],note0:r[4],link:r[5],done0:r[7]||""}});
+var thc=TH.cases.map(function(r,i){return{i:i,id:mid("thc",r[7],r[0]),src:"th",kind:"case",name:r[0],khoa:r[1],st0:r[2],cd:r[3],date:r[4],deepq:r[5],link:r[6],done0:r[8]||""}});
+var thd=TH.deep.map(function(r,i){return{i:i,id:mid("thd",r[6],r[0]),src:"th",kind:"deep",name:r[0],khoa:r[1],st0:r[2],week:r[3],date:r[4],link:r[5],done0:r[7]||""}});
 var thAll=tht.concat(thc,thd),all=mc.concat(kho,thAll),byId={};all.forEach(function(it){byId[it.id]=it});
 var groupOf=function(it){return it.src==="th"?it.khoa:CH[it.grp]||""};
 
@@ -319,7 +319,7 @@ function seedRev(it){var a=[];for(var i=0;i<(it.rev0||0);i++)a.push(it.last0||it
 function get(it){
   var p=S.p[it.id]||{},st=p.st!=null?p.st:it.st0;
   var d0=it.src==="mc"?(it.kt&&it.kt<=TODAY?it.kt:(it.bd||TODAY)):(it.upd||it.date||TODAY);
-  return{st:st,doneAt:p.doneAt||(st===2?d0:null),rev:p.rev||(st===2?seedRev(it):[]),conf:p.conf!=null?p.conf:(it.conf0||0),note:p.note!=null?p.note:(it.note0||"")};
+  return{st:st,doneAt:p.doneAt||(st===2?(it.done0||d0):null),rev:p.rev||(st===2?seedRev(it):[]),conf:p.conf!=null?p.conf:(it.conf0||0),note:p.note!=null?p.note:(it.note0||"")};
 }
 function set(it,patch){var p=S.p[it.id]=S.p[it.id]||{};for(var k in patch)p[k]=patch[k];if("st" in patch||"rev" in patch)p.base=it.st0;save()}
 function setStatus(it,st){var c=get(it);if(st===2)set(it,{st:2,doneAt:c.doneAt||TODAY,rev:c.rev});else set(it,{st:st,doneAt:null,rev:[]})}
@@ -576,8 +576,8 @@ document.getElementById("copyRep").addEventListener("click",function(){
 });
 if(DEMO)document.getElementById("demoBanner").classList.remove("hide");
 var gen="";try{if(D.generatedAt)gen=new Date(D.generatedAt).toLocaleString("vi-VN",{hour12:false,day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"})}catch(e){}
-document.getElementById("sub").textContent="Dữ liệu từ Notion"+(gen?", đồng bộ lần cuối "+gen:" (bản chụp "+fmt(D.snapshot)+"/"+D.snapshot.slice(0,4)+")")+". Thay đổi bạn bấm trên web lưu trong trình duyệt này.";
-document.getElementById("foot").textContent="Notion → web: tự cập nhật theo lịch. Web → Notion: bấm Sao chép báo cáo rồi dán cho Claude. Thay đổi trên web chỉ lưu trong trình duyệt này (dùng Xuất/Nhập JSON để chuyển máy).";
+document.getElementById("sub").textContent="Dữ liệu từ Notion"+(gen?", thay đổi lần cuối "+gen:" (bản chụp "+fmt(D.snapshot)+"/"+D.snapshot.slice(0,4)+")")+". Thay đổi bạn bấm trên web lưu trong trình duyệt này.";
+document.getElementById("foot").textContent="Notion → web: kiểm tra mỗi 30 phút, chỉ đổi khi Notion có thay đổi. Web → Notion: bấm Sao chép báo cáo rồi dán cho Claude. Thay đổi trên web chỉ lưu trong trình duyệt này (dùng Xuất/Nhập JSON để chuyển máy).";
 refresh();
 })();
 </script>

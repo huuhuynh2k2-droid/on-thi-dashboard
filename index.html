@@ -579,6 +579,23 @@ var gen="";try{if(D.generatedAt)gen=new Date(D.generatedAt).toLocaleString("vi-V
 document.getElementById("sub").textContent="Dữ liệu từ Notion"+(gen?", thay đổi lần cuối "+gen:" (bản chụp "+fmt(D.snapshot)+"/"+D.snapshot.slice(0,4)+")")+". Thay đổi bạn bấm trên web lưu trong trình duyệt này.";
 document.getElementById("foot").textContent="Notion → web: kiểm tra mỗi 30 phút, chỉ đổi khi Notion có thay đổi. Web → Notion: bấm Sao chép báo cáo rồi dán cho Claude. Thay đổi trên web chỉ lưu trong trình duyệt này (dùng Xuất/Nhập JSON để chuyển máy).";
 refresh();
+
+/* Hỏi GitHub lần chạy đồng bộ thành công gần nhất (chỉ khi trang chạy trên github.io; lỗi thì bỏ qua) */
+(function(){
+  var host=location.hostname,m=host.match(/^([^.]+)\.github\.io$/),repo=location.pathname.split("/")[1];
+  if(!m||!repo||!window.fetch)return;
+  var ctl=window.AbortController?new AbortController():null,timer=setTimeout(function(){if(ctl)ctl.abort()},6000);
+  fetch("https://api.github.com/repos/"+m[1]+"/"+repo+"/actions/workflows/sync-notion.yml/runs?status=success&per_page=1",{signal:ctl?ctl.signal:undefined,headers:{Accept:"application/vnd.github+json"}})
+   .then(function(r){return r.ok?r.json():Promise.reject()})
+   .then(function(j){
+     clearTimeout(timer);
+     var run=j.workflow_runs&&j.workflow_runs[0];if(!run)return;
+     var t=new Date(run.updated_at||run.run_started_at),mins=Math.max(0,Math.round((Date.now()-t)/60000));
+     var ago=mins<1?"vừa xong":mins<60?mins+" phút trước":mins<1440?Math.round(mins/60)+" giờ trước":Math.round(mins/1440)+" ngày trước";
+     var when=t.toLocaleString("vi-VN",{hour12:false,day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"});
+     document.getElementById("sub").textContent="Đã kiểm tra Notion lúc "+when+" ("+ago+")"+(gen?", dữ liệu Notion đổi lần cuối "+gen:"")+". Thay đổi bạn bấm trên web lưu trong trình duyệt này.";
+   }).catch(function(){clearTimeout(timer)});
+})();
 })();
 </script>
 </body>

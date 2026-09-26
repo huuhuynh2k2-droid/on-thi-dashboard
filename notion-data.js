@@ -3,7 +3,7 @@
 // kho: [tên, mã hệ, tầng 1-3, trạng thái, ưu tiên 0-3, tự tin, E/N, cập nhật, id bài, id trang]
 window.NOTION_DATA = {
   snapshot: "2026-09-26",
-  generatedAt: "2026-09-26T16:56:15.985Z",
+  generatedAt: "2026-09-26T17:03:36.507Z",
   chapters: {"NT":"Nội tiết","TH":"Tiêu hóa","TM":"Tim mạch","HH":"Hô hấp","TN":"Thận – Niệu","TK":"Thần kinh","CX":"Cơ xương khớp","MA":"Máu – Bạch huyết","MD":"Miễn dịch","SP":"Sản phụ khoa","TT":"Tâm thần","DA":"Da","DC":"Đa cơ quan & Khác","BS":"Nhóm bổ sung"},
   rows: [
     ["Rối loạn đường huyết","NT","T","2026-09-14","2026-09-15","3c8cb1425c8180d6b9e1e094e26e1ed1",2,0,0,"","","3cbcb1425c818102be96d7b72393e888"],
@@ -147,7 +147,7 @@ window.NOTION_DATA = {
     ["Ôn tập tổng hợp — Nhóm bổ sung (121-125 - cần đối chiếu)","BS","O","2027-08-23","2027-08-26","",0,0,0,"","","3cbcb1425c818188ac2af349b65df80d"]
   ],
   kho: [
-    ["Chẩn đoán và Xử trí Cường giáp — ATA 2016 (1)","NT",3,1,1,0,"","2026-09-23","3e4cb1425c8181dbb9ced44109ca74dd","3e4cb1425c8181dbb9ced44109ca74dd"],
+    ["Chẩn đoán và Xử trí Cường giáp — ATA 2016 (1)","NT",3,2,1,0,"","2026-09-26","3e4cb1425c8181dbb9ced44109ca74dd","3e4cb1425c8181dbb9ced44109ca74dd"],
     ["Chẩn đoán và Xử trí Cường giáp — ATA 2016","NT",3,1,1,0,"","2026-09-23","3e3cb1425c818164a9dce9d0f8da5869","3e3cb1425c818164a9dce9d0f8da5869"],
     ["Kali máu nền và biến đổi ECG trong tăng kali máu","DC",3,0,0,0,"","2026-09-18","3dfcb1425c818075963dcd4a026c9168","3dfcb1425c818075963dcd4a026c9168"],
     ["ECG và tăng kali máu: dòng thời gian 34 năm nghiên cứu","DC",3,0,0,0,"","2026-09-18","3dfcb1425c818036b6c3fab428693e70","3dfcb1425c818036b6c3fab428693e70"],

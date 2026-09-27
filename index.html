@@ -3,37 +3,55 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Bảng Theo Dõi Ôn Thi</title>
+<title>Bảng Theo Dõi Ôn Thi — BS. Huỳnh Hữu Minh</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%8B%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
   color-scheme:light;
-  --bg:#f9f9f7;--surface:#fcfcfb;--ink:#0b0b0b;--ink2:#52514e;--muted:#898781;
-  --grid:#e1e0d9;--axis:#c3c2b7;--border:rgba(11,11,11,.10);
-  --s1:#2a78d6;--s1-soft:#86b6ef;--wash:rgba(11,11,11,.05);
-  --good:#006300;--warn:#fab219;--crit:#d03b3b;--accent:#2a78d6;--onaccent:#fff;
+  --bg:#f7f8fb;--surface:#ffffff;--ink:#0c1b33;--ink2:#4c5a72;--muted:#8b93a3;
+  --grid:#e7ebf2;--axis:#c9d0dc;--border:rgba(12,27,51,.10);
+  --s1:#12305e;--s1-soft:#a9c1e4;--wash:rgba(12,27,51,.05);
+  --good:#158a4d;--warn:#b8790a;--crit:#c53434;--accent:#12305e;--accent2:#0b1e3d;--onaccent:#fff;--gold:#c9962c;--gold2:#e8b64a;
 }
 @media (prefers-color-scheme:dark){
   :root:where(:not([data-theme="light"])){
     color-scheme:dark;
-    --bg:#0d0d0d;--surface:#1a1a19;--ink:#fff;--ink2:#c3c2b7;--muted:#898781;
-    --grid:#2c2c2a;--axis:#383835;--border:rgba(255,255,255,.10);
-    --s1:#3987e5;--s1-soft:#1c5cab;--wash:rgba(255,255,255,.06);
-    --good:#0ca30c;--accent:#3987e5;
+    --bg:#070d1a;--surface:#0f1a30;--ink:#eef1f7;--ink2:#aab4c6;--muted:#7c8598;
+    --grid:#1c2740;--axis:#26314c;--border:rgba(255,255,255,.10);
+    --s1:#5b8ad6;--s1-soft:#27436f;--wash:rgba(255,255,255,.05);
+    --good:#33c27c;--warn:#f0ab3d;--crit:#f07272;--accent:#4d7ec9;--accent2:#7fa6de;--gold:#e8b64a;--gold2:#f4cf7e;
   }
 }
 :root[data-theme="dark"]{
   color-scheme:dark;
-  --bg:#0d0d0d;--surface:#1a1a19;--ink:#fff;--ink2:#c3c2b7;--muted:#898781;
-  --grid:#2c2c2a;--axis:#383835;--border:rgba(255,255,255,.10);
-  --s1:#3987e5;--s1-soft:#1c5cab;--wash:rgba(255,255,255,.06);
-  --good:#0ca30c;--accent:#3987e5;
+  --bg:#070d1a;--surface:#0f1a30;--ink:#eef1f7;--ink2:#aab4c6;--muted:#7c8598;
+  --grid:#1c2740;--axis:#26314c;--border:rgba(255,255,255,.10);
+  --s1:#5b8ad6;--s1-soft:#27436f;--wash:rgba(255,255,255,.05);
+  --good:#33c27c;--warn:#f0ab3d;--crit:#f07272;--accent:#4d7ec9;--accent2:#7fa6de;--gold:#e8b64a;--gold2:#f4cf7e;
 }
 *{box-sizing:border-box}
 html,body{margin:0}
-body{background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font:15px/1.5 "Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-text-size-adjust:100%}
+h1,h2,.logo b{font-family:"Be Vietnam Pro",system-ui,sans-serif}
 button,input,select{font:inherit;color:inherit}
 .wrap{max-width:1180px;margin:0 auto;padding:0 16px 48px}
-header{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;padding:20px 0 8px}
+
+/* ---- hero header ---- */
+.hero{background:linear-gradient(135deg,var(--accent2) 0%,var(--accent) 60%,#1c4a8c 100%);color:#fff;border-radius:0 0 26px 26px;padding:22px 0 30px;margin-bottom:18px;box-shadow:0 2px 0 var(--gold) inset}
+.hero-in{max-width:1180px;margin:0 auto;padding:0 16px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:12px}
+.avatar{position:relative;display:inline-flex;flex:none}
+.avatar-badge{position:absolute;right:-3px;bottom:-3px;background:var(--gold);border:2px solid var(--accent2);border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:11px}
+.logo b{font-size:21px;font-weight:800;display:block;letter-spacing:.2px}
+.logo .byline{font-size:12.5px;color:var(--gold2);font-weight:600;margin-top:1px}
+.hero .tools{display:flex;gap:8px;flex-wrap:wrap}
+.hero .btn{background:rgba(255,255,255,.14);backdrop-filter:blur(2px);border:1px solid rgba(255,255,255,.32);border-radius:10px;padding:7px 13px;cursor:pointer;min-height:36px;text-decoration:none;color:#fff;display:inline-flex;align-items:center;gap:6px;font-weight:600;font-size:13px;transition:background .15s}
+.hero .btn:hover{background:rgba(255,255,255,.26)}
+.hero-sub{max-width:1180px;margin:14px auto 0;padding:0 16px;font-size:13.5px;color:rgba(255,255,255,.92)}
+
 h1{font-size:22px;margin:0;font-weight:650}
 .sub{color:var(--ink2);font-size:13px;margin-top:2px}
 .tools{display:flex;gap:8px;flex-wrap:wrap}
@@ -42,8 +60,8 @@ h1{font-size:22px;margin:0;font-weight:650}
 .btn.primary{background:var(--accent);border-color:var(--accent);color:var(--onaccent)}
 .btn.sm{padding:3px 9px;min-height:28px;font-size:13px}
 nav.main{display:flex;gap:4px;border-bottom:1px solid var(--grid);margin:8px 0 16px;overflow-x:auto}
-nav.main button,.subtabs button{background:none;border:0;border-bottom:2px solid transparent;padding:10px 14px;cursor:pointer;color:var(--ink2);white-space:nowrap}
-nav.main button[aria-selected="true"],.subtabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent);font-weight:600}
+nav.main button,.subtabs button{background:none;border:0;border-bottom:2px solid transparent;padding:10px 14px;cursor:pointer;color:var(--ink2);white-space:nowrap;font-weight:600}
+nav.main button[aria-selected="true"],.subtabs button[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--gold);border-bottom-width:3px}
 .subtabs{display:flex;gap:4px;margin:4px 0 12px;overflow-x:auto;border-bottom:1px solid var(--grid)}
 .subtabs button{padding:8px 12px;font-size:14px}
 .grid{display:grid;gap:12px}
@@ -51,7 +69,7 @@ nav.main button[aria-selected="true"],.subtabs button[aria-selected="true"]{colo
 .three{grid-template-columns:repeat(3,1fr)}
 .two{grid-template-columns:1fr 1fr}
 .mt{margin-top:12px}
-.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;min-width:0}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px;min-width:0;box-shadow:0 1px 2px rgba(12,27,51,.04)}
 .card h2{font-size:15px;margin:0 0 2px;font-weight:650}
 .card .hint{color:var(--ink2);font-size:12.5px;margin-bottom:10px}
 .tile .v{font-size:30px;font-weight:650;line-height:1.15}
@@ -73,9 +91,9 @@ nav.main button[aria-selected="true"],.subtabs button[aria-selected="true"]{colo
 .list .t b{font-weight:550;display:block;overflow:hidden;text-overflow:ellipsis}
 .list .t span{font-size:12.5px;color:var(--ink2)}
 .list .a{display:flex;gap:6px;flex:none}
-.flag{display:inline-flex;gap:4px;align-items:center;font-size:12px;border:1px solid var(--border);border-radius:99px;padding:0 8px;background:var(--wash);white-space:nowrap}
+.flag{display:inline-flex;gap:4px;align-items:center;font-size:12px;border:1px solid var(--border);border-radius:99px;padding:0 8px;background:var(--wash);white-space:nowrap;font-weight:600}
 .flag i{font-style:normal}
-.late i{color:var(--crit)}.soon i{color:var(--accent)}.due i{color:#b57a00}
+.late i{color:var(--crit)}.soon i{color:var(--accent)}.due i{color:var(--gold)}
 :root[data-theme="dark"] .due i{color:var(--warn)}
 @media (prefers-color-scheme:dark){:root:where(:not([data-theme="light"])) .due i{color:var(--warn)}}
 .empty{color:var(--ink2);font-size:13.5px;padding:8px 0}
@@ -114,9 +132,9 @@ nav.main button[aria-selected="true"],.subtabs button[aria-selected="true"]{colo
 .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
 .filters input,.filters select{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:6px 10px;min-height:34px}
 .filters input[type=search]{flex:1;min-width:180px}
-.tw{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.tw{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:0 1px 2px rgba(12,27,51,.04)}
 table.t{width:100%;border-collapse:collapse;font-size:14px}
-table.t thead th{position:sticky;top:0;background:var(--ink);color:var(--bg);text-align:left;font-weight:600;font-size:13px;padding:9px 10px;white-space:nowrap;cursor:pointer;user-select:none}
+table.t thead th{position:sticky;top:0;background:linear-gradient(120deg,var(--accent2),var(--accent));color:#fff;text-align:left;font-weight:700;font-size:12.5px;letter-spacing:.2px;text-transform:uppercase;padding:10px 10px;white-space:nowrap;cursor:pointer;user-select:none}
 table.t tbody td{padding:8px 10px;border-top:1px solid var(--grid);vertical-align:middle}
 table.t tbody tr:hover{background:var(--wash)}
 td.num,th.num{text-align:center}
@@ -153,21 +171,34 @@ td.st select[data-v="1"]{background:rgba(250,178,25,.18)}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header>
-    <div>
-      <h1>Bảng Theo Dõi Ôn Thi</h1>
-      <div class="sub" id="sub"></div>
+<div class="hero">
+  <div class="hero-in">
+    <div class="logo">
+      <span class="avatar">
+        <svg width="50" height="50" viewBox="0 0 52 52" aria-hidden="true">
+          <defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e8b64a"/><stop offset="1" stop-color="#c9962c"/></linearGradient></defs>
+          <circle cx="26" cy="26" r="24.5" fill="#0b1e3d" stroke="url(#g1)" stroke-width="2.5"/>
+          <text x="26" y="32" text-anchor="middle" font-family="Be Vietnam Pro, sans-serif" font-weight="800" font-size="16" fill="#fff">HHM</text>
+        </svg>
+        <span class="avatar-badge">📋</span>
+      </span>
+      <div>
+        <b>Bảng Theo Dõi Ôn Thi</b>
+        <div class="byline">BS. Huỳnh Hữu Minh · Nội khoa</div>
+      </div>
     </div>
     <div class="tools">
-      <button class="btn" id="theme">Sáng / Tối</button>
-      <a class="btn" href="https://huuhuynh2k2-droid.github.io/thu-vien-y-khoa/" target="_blank" rel="noopener">Thư viện</a>
-      <button class="btn" id="copyRep" title="Sao chép báo cáo tiến độ để dán cho Claude cập nhật Notion">Sao chép báo cáo</button>
-      <button class="btn" id="exp">Xuất JSON</button>
-      <button class="btn" id="imp">Nhập JSON</button>
+      <button class="btn" id="theme">🌓 Sáng / Tối</button>
+      <a class="btn" href="https://huuhuynh2k2-droid.github.io/thu-vien-y-khoa/" target="_blank" rel="noopener">📚 Thư viện</a>
+      <button class="btn" id="copyRep" title="Sao chép báo cáo tiến độ để dán cho Claude cập nhật Notion">📋 Sao chép báo cáo</button>
+      <button class="btn" id="exp">⬇️ Xuất JSON</button>
+      <button class="btn" id="imp">⬆️ Nhập JSON</button>
       <input type="file" id="file" accept="application/json" class="hide">
     </div>
-  </header>
+  </div>
+  <div class="hero-sub" id="sub"></div>
+</div>
+<div class="wrap">
   <div class="banner hide" id="demoBanner">Đang xem <b>dữ liệu mẫu</b> ở tab Thực hành 12 tháng (thêm <code>?demo=1</code> vào địa chỉ). Bỏ đi để xem dữ liệu thật.</div>
 
   <nav class="main" role="tablist" id="tabs">

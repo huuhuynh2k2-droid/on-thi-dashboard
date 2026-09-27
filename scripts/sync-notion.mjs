@@ -74,7 +74,7 @@ export function rowKho(page) {
   return [name, CHN[nfc(p.sel("Hệ cơ quan"))] || "DC", /cơ sở/i.test(nh) ? 1 : /Bệnh lý/.test(nh) ? 2 : /Khuyến cáo/.test(nh) ? 3 : 0,
     stOf(p.sel("Trạng thái học tập")), /Core/.test(pr) ? 1 : /Nên biết/.test(pr) ? 2 : /Tham khảo/.test(pr) ? 3 : 0,
     p.num("Mức tự tin (1-5)"), /Cấp cứu/.test(pl) ? "E" : /Thông thường/.test(pl) ? "N" : "",
-    le(page), pid(page), pid(page), le(page)];
+    le(page), pid(page), pid(page), le(page), p.url("URL")];
 }
 export function rowRot(page) {
   const p = props(page), name = p.title("Khoa");
@@ -172,7 +172,7 @@ export function renderData(d, generatedAt) {
   const arr = (rows) => "[\n" + rows.map((r) => "    " + JSON.stringify(r)).join(",\n") + "\n  ]";
   return `// TỰ ĐỘNG SINH bởi scripts/sync-notion.mjs - đừng sửa tay.
 // rows (125 chủ đề): [tên, mã hệ, loại T/O, bắt đầu, kết thúc, id bài học, trạng thái 0/1/2, tự tin, số lần ôn, ngày ôn gần nhất, ghi chú, id trang, ngày học xong]
-// kho: [tên, mã hệ, tầng 1-3, trạng thái, ưu tiên 0-3, tự tin, E/N, cập nhật, id bài, id trang, ngày học xong]
+// kho: [tên, mã hệ, tầng 1-3, trạng thái, ưu tiên 0-3, tự tin, E/N, cập nhật, id bài, id trang, ngày học xong, link bản dịch (nếu có)]
 window.NOTION_DATA = {
   snapshot: ${JSON.stringify(generatedAt.slice(0, 10))},
   generatedAt: ${JSON.stringify(generatedAt)},

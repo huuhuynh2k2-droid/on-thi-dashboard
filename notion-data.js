@@ -144,9 +144,10 @@ window.NOTION_DATA = {
     ["Vàng da sơ sinh","BS","T","2027-08-17","2027-08-17","",0,0,0,"","","3cbcb1425c818176bffcf1c2515b85bd",""],
     ["Kỹ năng giao tiếp bác sĩ-bệnh nhân","BS","T","2027-08-18","2027-08-18","",0,0,0,"","","3cbcb1425c818158855ffd1d9463166b",""],
     ["Y đức trong hành nghề","BS","T","2027-08-19","2027-08-19","",0,0,0,"","","3cbcb1425c8181d2ad99fbf001196695",""],
-    ["Ôn tập tổng hợp — Nhóm bổ sung (121-125 - cần đối chiếu)","BS","O","2027-08-23","2027-08-26","",0,0,0,"","","3cbcb1425c818188ac2af349b65df80d",""]
+    ["Ôn tập tổng hợp — Nhóm bổ sung (121-125 - cần đối chiếu)","BS","O","2027-08-23","2027-08-26","",0,0,0,"","","3cbcb1425c818188ac2af349b65df80d",""],
   ],
   kho: [
+    ["Hour-1 Sepsis Bundle: cập nhật bằng chứng (Gói can thiệp Hour-1 trong sepsis)","DC",3,0,0,0,"","2026-09-27","3e8cb1425c81817b843ac7e86a373f65","3e8cb1425c81817b843ac7e86a373f65","","https://huuhuynh2k2-droid.github.io/thu-vien-y-khoa/docs/hour1-sepsis-bundle.html"],
     ["Chẩn đoán và Xử trí Cường giáp — ATA 2016 (1)","NT",3,2,1,0,"","2026-09-26","3e4cb1425c8181dbb9ced44109ca74dd","3e4cb1425c8181dbb9ced44109ca74dd","2026-09-26"],
     ["Chẩn đoán và Xử trí Cường giáp — ATA 2016","NT",3,1,1,0,"","2026-09-23","3e3cb1425c818164a9dce9d0f8da5869","3e3cb1425c818164a9dce9d0f8da5869",""],
     ["Kali máu nền và biến đổi ECG trong tăng kali máu","DC",3,0,0,0,"","2026-09-18","3dfcb1425c818075963dcd4a026c9168","3dfcb1425c818075963dcd4a026c9168",""],

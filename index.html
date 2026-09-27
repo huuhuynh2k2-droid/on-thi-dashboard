@@ -161,6 +161,7 @@ td.st select[data-v="1"]{background:rgba(250,178,25,.18)}
     </div>
     <div class="tools">
       <button class="btn" id="theme">Sáng / Tối</button>
+      <a class="btn" href="https://huuhuynh2k2-droid.github.io/thu-vien-y-khoa/" target="_blank" rel="noopener">Thư viện</a>
       <button class="btn" id="copyRep" title="Sao chép báo cáo tiến độ để dán cho Claude cập nhật Notion">Sao chép báo cáo</button>
       <button class="btn" id="exp">Xuất JSON</button>
       <button class="btn" id="imp">Nhập JSON</button>
@@ -292,7 +293,7 @@ var DEMO=/[?&]demo=1/.test(location.search);
 /* ---- dữ liệu ---- */
 var mid=function(p,pid,name){return p+":"+(pid||name)};
 var mc=D.rows.map(function(r,i){return{i:i,id:mid("mc",r[11],r[0]),src:"mc",name:r[0],grp:r[1],type:r[2],bd:r[3]||"",kt:r[4]||"",link:r[5],st0:r[6],conf0:r[7]||0,rev0:r[8]||0,last0:r[9]||"",note0:r[10]||"",done0:r[12]||""}});
-var kho=(D.kho||[]).map(function(r,i){return{i:i,id:mid("kho",r[9],r[0]),src:"kho",name:r[0],grp:r[1],nhom:r[2],st0:r[3],pri:r[4],conf0:r[5]||0,pl:r[6],upd:r[7],link:r[8],done0:r[10]||""}});
+var kho=(D.kho||[]).map(function(r,i){return{i:i,id:mid("kho",r[9],r[0]),src:"kho",name:r[0],grp:r[1],nhom:r[2],st0:r[3],pri:r[4],conf0:r[5]||0,pl:r[6],upd:r[7],link:r[8],done0:r[10]||"",docUrl:r[11]||""}});
 var TH=D.th||{rotations:[],topics:[],cases:[],deep:[]};
 if(DEMO){TH={rotations:TH.rotations,
   topics:[["Đau bụng cấp ở bệnh nhân sau mổ (Mẫu)","Ngoại khoa",1,"Cao","","" ],["Chăm sóc vết mổ (Mẫu)","Ngoại khoa",2,"Trung bình","",""]],
@@ -341,7 +342,7 @@ function revLabel(it){var n=nextRev(it),g=get(it);if(!n)return"";var d=diff(n,TO
 function toast(m){var t=document.getElementById("toast");t.textContent=m;t.classList.add("on");clearTimeout(toast.h);toast.h=setTimeout(function(){t.classList.remove("on")},1800)}
 function stats(list){var c=[0,0,0];list.forEach(function(it){c[get(it).st]++});return c}
 function tile(v,l,d){return'<div class="card tile"><div class="v">'+v+'</div><div class="l">'+l+'</div><div class="d">'+d+'</div></div>'}
-function link(it,txt){return it.link?'<a href="https://www.notion.so/'+it.link+'" target="_blank" rel="noopener">'+esc(txt||it.name)+'</a>':esc(txt||it.name)}
+function link(it,txt){if(it.docUrl)return'<a href="'+esc(it.docUrl)+'" target="_blank" rel="noopener">'+esc(txt||it.name)+'</a>';return it.link?'<a href="https://www.notion.so/'+it.link+'" target="_blank" rel="noopener">'+esc(txt||it.name)+'</a>':esc(txt||it.name)}
 function revItems(list,max,opts){
   if(!list.length)return'<li class="empty">'+(opts&&opts.empty||"Chưa có bài nào.")+'</li>';
   return list.slice(0,max).map(function(it){var g=get(it);

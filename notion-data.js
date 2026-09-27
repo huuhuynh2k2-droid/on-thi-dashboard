@@ -3,7 +3,7 @@
 // kho: [tên, mã hệ, tầng 1-3, trạng thái, ưu tiên 0-3, tự tin, E/N, cập nhật, id bài, id trang, ngày học xong, link bản dịch (nếu có)]
 window.NOTION_DATA = {
   snapshot: "2026-09-27",
-  generatedAt: "2026-09-27T06:06:46.677Z",
+  generatedAt: "2026-09-27T12:16:33.471Z",
   chapters: {"NT":"Nội tiết","TH":"Tiêu hóa","TM":"Tim mạch","HH":"Hô hấp","TN":"Thận – Niệu","TK":"Thần kinh","CX":"Cơ xương khớp","MA":"Máu – Bạch huyết","MD":"Miễn dịch","SP":"Sản phụ khoa","TT":"Tâm thần","DA":"Da","DC":"Đa cơ quan & Khác","BS":"Nhóm bổ sung"},
   rows: [
     ["Rối loạn đường huyết","NT","T","2026-09-14","2026-09-15","3c8cb1425c8180d6b9e1e094e26e1ed1",2,0,0,"","","3cbcb1425c818102be96d7b72393e888","2026-09-18"],
@@ -147,6 +147,9 @@ window.NOTION_DATA = {
     ["Ôn tập tổng hợp — Nhóm bổ sung (121-125 - cần đối chiếu)","BS","O","2027-08-23","2027-08-26","",0,0,0,"","","3cbcb1425c818188ac2af349b65df80d",""]
   ],
   kho: [
+    ["2026 ACC/AHA Guideline Quản lý Rối loạn lipid máu — Bản dịch đầy đủ","TM",3,2,0,0,"","2026-09-27","3e8cb1425c8181108628ec2951926802","3e8cb1425c8181108628ec2951926802","2026-09-27","https://huuhuynh2k2-droid.github.io/thu-vien-y-khoa/docs/dyslipidemia-2026-phan1.html"],
+    ["Vị thế của Aspirin trong dòng chảy Tim mạch hiện đại — Tổng hợp lâm sàng","TM",3,0,0,0,"","2026-09-27","3e8cb1425c81819ea2ecd6f9834a4712","3e8cb1425c81819ea2ecd6f9834a4712","","https://huuhuynh2k2-droid.github.io/aspirin-trong-lam-sang-hien-dai/"],
+    ["Quản lý tăng đường huyết ở bệnh nhân nội trú","NT",3,0,0,0,"","2026-09-27","3e8cb1425c818102a909e74bb3e93769","3e8cb1425c818102a909e74bb3e93769","","https://huuhuynh2k2-droid.github.io/thu-vien-y-khoa/docs/hyperglycemia-hospitalized.html"],
     ["Suy thượng thận do Glucocorticoid — Chẩn đoán và Điều trị","NT",3,0,0,0,"","2026-09-27","3e8cb1425c818117ad07c3593ec79582","3e8cb1425c818117ad07c3593ec79582","","https://huuhuynh2k2-droid.github.io/chot-suy/"],
     ["Hour-1 Sepsis Bundle: cập nhật bằng chứng (Gói can thiệp Hour-1 trong sepsis)","DC",3,0,0,0,"","2026-09-27","3e8cb1425c81817b843ac7e86a373f65","3e8cb1425c81817b843ac7e86a373f65","","https://huuhuynh2k2-droid.github.io/thu-vien-y-khoa/docs/hour1-sepsis-bundle.html"],
     ["Chẩn đoán và Xử trí Cường giáp — ATA 2016 (1)","NT",3,2,1,0,"","2026-09-26","3e4cb1425c8181dbb9ced44109ca74dd","3e4cb1425c8181dbb9ced44109ca74dd","2026-09-26",""],

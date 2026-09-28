@@ -2,8 +2,8 @@
 // rows (125 chủ đề): [tên, mã hệ, loại T/O, bắt đầu, kết thúc, id bài học, trạng thái 0/1/2, tự tin, số lần ôn, ngày ôn gần nhất, ghi chú, id trang, ngày học xong]
 // kho: [tên, mã hệ, tầng 1-3, trạng thái, ưu tiên 0-3, tự tin, E/N, cập nhật, id bài, id trang, ngày học xong, link bản dịch (nếu có)]
 window.NOTION_DATA = {
-  snapshot: "2026-09-27",
-  generatedAt: "2026-09-27T12:16:33.471Z",
+  snapshot: "2026-09-28",
+  generatedAt: "2026-09-28T16:52:24.133Z",
   chapters: {"NT":"Nội tiết","TH":"Tiêu hóa","TM":"Tim mạch","HH":"Hô hấp","TN":"Thận – Niệu","TK":"Thần kinh","CX":"Cơ xương khớp","MA":"Máu – Bạch huyết","MD":"Miễn dịch","SP":"Sản phụ khoa","TT":"Tâm thần","DA":"Da","DC":"Đa cơ quan & Khác","BS":"Nhóm bổ sung"},
   rows: [
     ["Rối loạn đường huyết","NT","T","2026-09-14","2026-09-15","3c8cb1425c8180d6b9e1e094e26e1ed1",2,0,0,"","","3cbcb1425c818102be96d7b72393e888","2026-09-18"],
@@ -13,7 +13,7 @@ window.NOTION_DATA = {
     ["Rối loạn lipid máu","NT","T","2026-09-22","2026-09-22","3c9cb1425c8180ef8a51c898219a811f",2,0,0,"","","3cbcb1425c8181b4ac6aec45ca243c62","2026-09-26"],
     ["Ôn tập tổng hợp — Hệ Nội tiết","NT","O","2026-11-07","2026-11-18","",0,0,0,"","","3cbcb1425c818121827ec888a546f7c6",""],
     ["Buồn nôn/Nôn","TH","T","2026-09-24","2026-09-23","3cbcb1425c81813fb3daf13dbd55a6d5",0,0,0,"2026-10-10","","3cbcb1425c81819284fac95ff96d04a8",""],
-    ["Đau bụng cấp","TH","T","2026-09-28","2026-09-29","3cbcb1425c8181819d1cd99f4d65f62d",0,0,0,"","","3cbcb1425c8181e6812ef900216e8fba",""],
+    ["Đau bụng cấp","TH","T","2026-09-28","2026-09-29","3cbcb1425c8181819d1cd99f4d65f62d",1,0,0,"","","3cbcb1425c8181e6812ef900216e8fba",""],
     ["Đau bụng mạn/Ợ nóng/Ợ trớ/Khó tiêu","TH","T","2026-09-30","2026-10-01","3cbcb1425c8181e696cbe9344d62baaa",0,0,0,"","","3cbcb1425c81810bafd3c8942000b528",""],
     ["Nghẹn, nuốt khó","TH","T","2026-10-01","2026-09-24","3cbcb1425c8181a29d45f14d573e3be4",0,0,0,"","","3cbcb1425c8181038facf382716b1466",""],
     ["Báng bụng","TH","T","2026-10-05","2026-10-05","3cbcb1425c8181ed847bf6c2c04216f5",0,0,0,"","","3cbcb1425c8181e3b722d58519f44adc",""],
@@ -147,6 +147,9 @@ window.NOTION_DATA = {
     ["Ôn tập tổng hợp — Nhóm bổ sung (121-125 - cần đối chiếu)","BS","O","2027-08-23","2027-08-26","",0,0,0,"","","3cbcb1425c818188ac2af349b65df80d",""]
   ],
   kho: [
+    ["ESC 2026 Guideline Suy tim — Bản tổng hợp/viết lại đầy đủ (5 phần)","TM",3,0,0,0,"","2026-09-28","3e9cb1425c818107af6bdc8574021f2d","3e9cb1425c818107af6bdc8574021f2d","","https://huuhuynh2k2-droid.github.io/thu-vien-y-khoa/docs/esc-2026-suy-tim-index.html"],
+    ["Suy tim phân suất tống máu bảo tồn (HFpEF) — Clinical Practice (NEJM 2025)","TM",3,0,0,0,"","2026-09-28","3e9cb1425c818108ad56f1b0323d6b8b","3e9cb1425c818108ad56f1b0323d6b8b","","https://huuhuynh2k2-droid.github.io/thu-vien-y-khoa/docs/hfpef-nejm-2025-clb-noikhoa.html"],
+    ["HFpEF tại châu Á — Đặc điểm lâm sàng và Chiến lược điều trị","TM",3,0,0,0,"","2026-09-28","3e9cb1425c818196841ff3c837b6823c","3e9cb1425c818196841ff3c837b6823c","","https://huuhuynh2k2-droid.github.io/thu-vien-y-khoa/docs/hfpef-chau-a-2026.html"],
     ["2026 ACC/AHA Guideline Quản lý Rối loạn lipid máu — Bản dịch đầy đủ","TM",3,2,0,0,"","2026-09-27","3e8cb1425c8181108628ec2951926802","3e8cb1425c8181108628ec2951926802","2026-09-27","https://huuhuynh2k2-droid.github.io/thu-vien-y-khoa/docs/dyslipidemia-2026-phan1.html"],
     ["Vị thế của Aspirin trong dòng chảy Tim mạch hiện đại — Tổng hợp lâm sàng","TM",3,0,0,0,"","2026-09-27","3e8cb1425c81819ea2ecd6f9834a4712","3e8cb1425c81819ea2ecd6f9834a4712","","https://huuhuynh2k2-droid.github.io/aspirin-trong-lam-sang-hien-dai/"],
     ["Quản lý tăng đường huyết ở bệnh nhân nội trú","NT",3,0,0,0,"","2026-09-27","3e8cb1425c818102a909e74bb3e93769","3e8cb1425c818102a909e74bb3e93769","","https://huuhuynh2k2-droid.github.io/thu-vien-y-khoa/docs/hyperglycemia-hospitalized.html"],
@@ -397,7 +400,7 @@ window.NOTION_DATA = {
     ["Sản khoa","2027-08-28","2027-09-27","1 tháng"]
   ],
     topics: [
-
+    ["Thoát vị bẹn","Ngoại khoa",1,"Cao","Khung 15 phần — chưa điền nội dung chi tiết","3e9cb1425c818195ada6d8e675a2acd9","3e9cb1425c818195ada6d8e675a2acd9",""]
   ],
     cases: [
 

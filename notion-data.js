@@ -2,8 +2,8 @@
 // rows (125 chủ đề): [tên, mã hệ, loại T/O, bắt đầu, kết thúc, id bài học, trạng thái 0/1/2, tự tin, số lần ôn, ngày ôn gần nhất, ghi chú, id trang, ngày học xong]
 // kho: [tên, mã hệ, tầng 1-3, trạng thái, ưu tiên 0-3, tự tin, E/N, cập nhật, id bài, id trang, ngày học xong, link bản dịch (nếu có)]
 window.NOTION_DATA = {
-  snapshot: "2026-09-28",
-  generatedAt: "2026-09-28T16:52:24.133Z",
+  snapshot: "2026-09-29",
+  generatedAt: "2026-09-29T08:49:46.705Z",
   chapters: {"NT":"Nội tiết","TH":"Tiêu hóa","TM":"Tim mạch","HH":"Hô hấp","TN":"Thận – Niệu","TK":"Thần kinh","CX":"Cơ xương khớp","MA":"Máu – Bạch huyết","MD":"Miễn dịch","SP":"Sản phụ khoa","TT":"Tâm thần","DA":"Da","DC":"Đa cơ quan & Khác","BS":"Nhóm bổ sung"},
   rows: [
     ["Rối loạn đường huyết","NT","T","2026-09-14","2026-09-15","3c8cb1425c8180d6b9e1e094e26e1ed1",2,0,0,"","","3cbcb1425c818102be96d7b72393e888","2026-09-18"],
@@ -147,6 +147,7 @@ window.NOTION_DATA = {
     ["Ôn tập tổng hợp — Nhóm bổ sung (121-125 - cần đối chiếu)","BS","O","2027-08-23","2027-08-26","",0,0,0,"","","3cbcb1425c818188ac2af349b65df80d",""]
   ],
   kho: [
+    ["KDIGO 2026 AKI/AKD — Chương 1: Định nghĩa, nhận diện, phân loại (+ trẻ em, sơ sinh)","TN",3,0,0,0,"","2026-09-29","3eacb1425c81816b9a62e5ab31d123d1","3eacb1425c81816b9a62e5ab31d123d1","","https://huuhuynh2k2-droid.github.io/thu-vien-y-khoa/docs/kdigo-2026-aki-akd-chuong1.html"],
     ["ESC 2026 Guideline Suy tim — Bản tổng hợp/viết lại đầy đủ (5 phần)","TM",3,0,0,0,"","2026-09-28","3e9cb1425c818107af6bdc8574021f2d","3e9cb1425c818107af6bdc8574021f2d","","https://huuhuynh2k2-droid.github.io/thu-vien-y-khoa/docs/esc-2026-suy-tim-index.html"],
     ["Suy tim phân suất tống máu bảo tồn (HFpEF) — Clinical Practice (NEJM 2025)","TM",3,0,0,0,"","2026-09-28","3e9cb1425c818108ad56f1b0323d6b8b","3e9cb1425c818108ad56f1b0323d6b8b","","https://huuhuynh2k2-droid.github.io/thu-vien-y-khoa/docs/hfpef-nejm-2025-clb-noikhoa.html"],
     ["HFpEF tại châu Á — Đặc điểm lâm sàng và Chiến lược điều trị","TM",3,0,0,0,"","2026-09-28","3e9cb1425c818196841ff3c837b6823c","3e9cb1425c818196841ff3c837b6823c","","https://huuhuynh2k2-droid.github.io/thu-vien-y-khoa/docs/hfpef-chau-a-2026.html"],

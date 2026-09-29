@@ -3,7 +3,7 @@
 // kho: [tên, mã hệ, tầng 1-3, trạng thái, ưu tiên 0-3, tự tin, E/N, cập nhật, id bài, id trang, ngày học xong, link bản dịch (nếu có)]
 window.NOTION_DATA = {
   snapshot: "2026-09-29",
-  generatedAt: "2026-09-29T08:49:46.705Z",
+  generatedAt: "2026-09-29T15:18:31.486Z",
   chapters: {"NT":"Nội tiết","TH":"Tiêu hóa","TM":"Tim mạch","HH":"Hô hấp","TN":"Thận – Niệu","TK":"Thần kinh","CX":"Cơ xương khớp","MA":"Máu – Bạch huyết","MD":"Miễn dịch","SP":"Sản phụ khoa","TT":"Tâm thần","DA":"Da","DC":"Đa cơ quan & Khác","BS":"Nhóm bổ sung"},
   rows: [
     ["Rối loạn đường huyết","NT","T","2026-09-14","2026-09-15","3c8cb1425c8180d6b9e1e094e26e1ed1",2,0,0,"","","3cbcb1425c818102be96d7b72393e888","2026-09-18"],
@@ -404,10 +404,11 @@ window.NOTION_DATA = {
     ["Thoát vị bẹn","Ngoại khoa",1,"Cao","Khung 15 phần — chưa điền nội dung chi tiết","3e9cb1425c818195ada6d8e675a2acd9","3e9cb1425c818195ada6d8e675a2acd9",""]
   ],
     cases: [
-
+    ["NG-001","Ngoại khoa",1,"Sỏi mật khác (ICD-10 K80.8, theo mã trong bệnh án). Chưa có chẩn đoán lâm sàng đầy đủ. Kèm tổn thương thận cấp, giảm tiểu cầu nặng, thiếu máu.","2026-09-29",1,"3eacb1425c81818abd36cf1b1c62c254","3eacb1425c81818abd36cf1b1c62c254",""]
   ],
     deep: [
-
+    ["Rối loạn kiềm toan hỗn hợp và tương tác K–Na–Ca khi truyền bicarbonate trong AKI","Ngoại khoa",0,"Tuần 28/09–04/10/2026","2026-09-29","3eacb1425c81819ab22fdb5e52c7b104","3eacb1425c81819ab22fdb5e52c7b104",""],
+    ["Viêm đường mật cấp nặng (TG18 độ III): tiêu chuẩn suy cơ quan và thời điểm dẫn lưu","Ngoại khoa",0,"Tuần 28/09–04/10/2026","2026-09-29","3eacb1425c8181fbac46c13dad58d1c0","3eacb1425c8181fbac46c13dad58d1c0",""]
   ]
   }
 };

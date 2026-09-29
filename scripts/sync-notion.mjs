@@ -89,7 +89,12 @@ export function rowTop(page) {
 export function rowCas(page) {
   const p = props(page), name = p.title("Tên ca / Mã ca");
   if (!name) return null;
-  return [name, p.sel("Khoa"), stOf(p.sel("Trạng thái ghi chép")), p.text("Chẩn đoán chính"), p.date("Ngày gặp"), p.check("Case đáng đào sâu"), pid(page), pid(page), le(page)];
+  // Phần mở rộng cho tab "Bệnh phòng": CHỈ lấy dữ liệu không định danh (tình trạng + cờ 0/1 đã điền phần phân tích chưa).
+  // KHÔNG đưa tuổi/giường/bệnh sử/CLS/nội dung phân tích vào đây vì notion-data.js nằm trong repo công khai.
+  const filled = ["Phân tích đề nghị CLS (AI)", "Phân tích điều trị (AI)", "Thắc mắc lâm sàng", "Kiến thức cần nắm", "Kiến thức cần đào sâu", "Tổng kết - bài học rút ra"]
+    .map((n) => (p.text(n) ? "1" : "0")).join("");
+  return [name, p.sel("Khoa"), stOf(p.sel("Trạng thái ghi chép")), p.text("Chẩn đoán chính"), p.date("Ngày gặp"), p.check("Case đáng đào sâu"), pid(page), pid(page), le(page),
+    p.sel("Tình trạng"), filled];
 }
 export function rowDep(page) {
   const p = props(page), name = p.title("Tên chuyên đề");
@@ -173,6 +178,7 @@ export function renderData(d, generatedAt) {
   return `// TỰ ĐỘNG SINH bởi scripts/sync-notion.mjs - đừng sửa tay.
 // rows (125 chủ đề): [tên, mã hệ, loại T/O, bắt đầu, kết thúc, id bài học, trạng thái 0/1/2, tự tin, số lần ôn, ngày ôn gần nhất, ghi chú, id trang, ngày học xong]
 // kho: [tên, mã hệ, tầng 1-3, trạng thái, ưu tiên 0-3, tự tin, E/N, cập nhật, id bài, id trang, ngày học xong, link bản dịch (nếu có)]
+// th.cases: [tên/mã ca, khoa, trạng thái, chẩn đoán chính, ngày gặp, đáng đào sâu, id, id trang, ngày học xong, tình trạng nằm viện, cờ 6 phần phân tích "CLS,ĐT,thắc mắc,nắm,đào sâu,tổng kết" dạng 0/1]
 window.NOTION_DATA = {
   snapshot: ${JSON.stringify(generatedAt.slice(0, 10))},
   generatedAt: ${JSON.stringify(generatedAt)},

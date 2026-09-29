@@ -62,6 +62,9 @@ h1{font-size:22px;margin:0;font-weight:650}
 nav.main{display:flex;gap:4px;border-bottom:1px solid var(--grid);margin:8px 0 16px;overflow-x:auto}
 nav.main button,.subtabs button{background:none;border:0;border-bottom:2px solid transparent;padding:10px 14px;cursor:pointer;color:var(--ink2);white-space:nowrap;font-weight:600}
 nav.main button[aria-selected="true"],.subtabs button[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--gold);border-bottom-width:3px}
+.aichips{display:inline-flex;gap:3px;flex-wrap:wrap;vertical-align:middle}
+.aichip{font-size:11px;font-weight:700;padding:1px 6px;border-radius:6px;border:1px solid var(--grid);color:var(--muted);background:var(--wash)}
+.aichip.on{background:var(--good);border-color:var(--good);color:#fff}
 .subtabs{display:flex;gap:4px;margin:4px 0 12px;overflow-x:auto;border-bottom:1px solid var(--grid)}
 .subtabs button{padding:8px 12px;font-size:14px}
 .grid{display:grid;gap:12px}
@@ -206,6 +209,7 @@ td.st select[data-v="1"]{background:rgba(250,178,25,.18)}
     <button role="tab" aria-selected="false" data-tab="mc">125 chủ đề</button>
     <button role="tab" aria-selected="false" data-tab="kho">Kho tri thức</button>
     <button role="tab" aria-selected="false" data-tab="th">Thực hành 12 tháng</button>
+    <button role="tab" aria-selected="false" data-tab="bp">Bệnh phòng</button>
     <button role="tab" aria-selected="false" data-tab="rv">Ôn tập</button>
   </nav>
 
@@ -290,6 +294,25 @@ td.st select[data-v="1"]{background:rgba(250,178,25,.18)}
     </table><div class="emptybox hide" id="thEmpty"></div></div>
   </section>
 
+  <!-- BỆNH PHÒNG -->
+  <section id="bp" class="hide">
+    <div class="grid tiles" id="bpTiles"></div>
+    <div class="card mt"><h2>Theo dõi bệnh nhân ở bệnh phòng</h2>
+      <div class="hint">Mỗi ca là 1 dòng trong Notion (CSDL Case bệnh nhân). Gửi thông tin ca cho Claude, Claude điền phân tích vào Notion rồi trang này tự cập nhật sau lần đồng bộ kế tiếp. Vì repo công khai nên trang này <b>chỉ hiện mã ca, khoa, tình trạng và ca đã có phân tích chưa</b>. Nội dung lâm sàng xem trong Notion (bấm vào mã ca).</div>
+      <div class="dim" style="margin-top:8px">6 ô phân tích: <b>CLS</b> đề nghị cận lâm sàng · <b>ĐT</b> điều trị · <b>?</b> thắc mắc lâm sàng · <b>Nắm</b> kiến thức cần nắm · <b>Sâu</b> kiến thức cần đào sâu · <b>TK</b> tổng kết bài học</div></div>
+    <div class="filters mt">
+      <input type="search" id="bpQ" placeholder="Tìm mã ca...">
+      <select id="bpKh"></select>
+      <select id="bpTt"><option value="all">Mọi tình trạng</option><option value="Đang nằm viện">Đang nằm viện</option><option value="Ra viện">Ra viện</option><option value="Chuyển khoa / viện">Chuyển khoa / viện</option><option value="Tử vong">Tử vong</option><option value="none">Chưa ghi tình trạng</option></select>
+      <select id="bpAi"><option value="all">Mọi mức phân tích</option><option value="miss">Còn thiếu phần phân tích</option><option value="full">Đủ 6 phần</option></select>
+    </div>
+    <p class="count" id="bpCount"></p>
+    <div class="tw"><table class="t">
+      <thead><tr><th>Mã ca</th><th>Khoa</th><th>Ngày gặp</th><th>Tình trạng</th><th>Phân tích AI</th><th>Đào sâu</th><th>Ôn lại</th></tr></thead>
+      <tbody id="bpTb"></tbody>
+    </table><div class="emptybox hide" id="bpEmpty"></div></div>
+  </section>
+
   <!-- ÔN TẬP -->
   <section id="rv" class="hide">
     <div class="filters">
@@ -311,7 +334,7 @@ if(!D||!D.rows){document.body.innerHTML='<div style="max-width:560px;margin:60px
 var CH=D.chapters,GAP=[1,3,7,14,30,60],STN=["Chưa học","Đang học","Đã học xong"],KEY="ontap-dashboard-v2";
 var NHOM={1:"Cơ sở",2:"Bệnh lý",3:"Khuyến cáo"},NHOMF={1:"1. Kiến thức cơ sở",2:"2. Bệnh lý",3:"3. Khuyến cáo mới nhất"},PRI={0:"–",1:"Core",2:"Nên biết",3:"Tham khảo"};
 var SRCN={mc:"125 chủ đề",kho:"Kho tri thức",th:"Thực hành"};
-var KHOA=["Ngoại khoa","Nội khoa","Hồi sức","Cấp cứu","Chuyên khoa lẻ","Nhi khoa","Sản khoa"];
+var KHOA=["Ngoại khoa","Nội khoa","Hồi sức","Cấp cứu","Chuyên khoa lẻ","Nhi khoa","Sản khoa","Tiêu hoá (đi thêm)"];
 var pad=function(n){return String(n).padStart(2,"0")};
 var iso=function(d){return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate())};
 var TODAY=iso(new Date());
@@ -331,7 +354,7 @@ if(DEMO){TH={rotations:TH.rotations,
   cases:[["CA-001 Viêm ruột thừa (Mẫu)","Ngoại khoa",2,"Viêm ruột thừa cấp",TODAY,0,""],["CA-002 Tắc ruột (Mẫu)","Ngoại khoa",1,"Tắc ruột do dính",TODAY,1,""]],
   deep:[["Kháng sinh dự phòng trước mổ (Mẫu)","Ngoại khoa",2,"Tuần 1",TODAY,""],["Bù dịch quanh phẫu thuật (Mẫu)","Ngoại khoa",1,"Tuần 1",TODAY,""]]}}
 var tht=TH.topics.map(function(r,i){return{i:i,id:mid("tht",r[6],r[0]),src:"th",kind:"topic",name:r[0],khoa:r[1],st0:r[2],pri:r[3],note0:r[4],link:r[5],done0:r[7]||""}});
-var thc=TH.cases.map(function(r,i){return{i:i,id:mid("thc",r[7],r[0]),src:"th",kind:"case",name:r[0],khoa:r[1],st0:r[2],cd:r[3],date:r[4],deepq:r[5],link:r[6],done0:r[8]||""}});
+var thc=TH.cases.map(function(r,i){return{i:i,id:mid("thc",r[7],r[0]),src:"th",kind:"case",name:r[0],khoa:r[1],st0:r[2],cd:r[3],date:r[4],deepq:r[5],link:r[6],done0:r[8]||"",tt:r[9]||"",ai:r[10]||"000000"}});
 var thd=TH.deep.map(function(r,i){return{i:i,id:mid("thd",r[6],r[0]),src:"th",kind:"deep",name:r[0],khoa:r[1],st0:r[2],week:r[3],date:r[4],link:r[5],done0:r[7]||""}});
 var thAll=tht.concat(thc,thd),all=mc.concat(kho,thAll),byId={};all.forEach(function(it){byId[it.id]=it});
 var groupOf=function(it){return it.src==="th"?it.khoa:CH[it.grp]||""};
@@ -549,6 +572,36 @@ function renderThTable(){
   else em.classList.add("hide");
 }
 
+/* ---- BỆNH PHÒNG ---- */
+var BP={q:"",kh:"all",tt:"all",ai:"all"},AIL=["CLS","ĐT","?","Nắm","Sâu","TK"];
+function aiCount(it){return(it.ai.match(/1/g)||[]).length}
+function aiChips(it){return'<span class="aichips">'+AIL.map(function(l,i){var on=it.ai.charAt(i)==="1";return'<span class="aichip'+(on?" on":"")+'" title="'+esc(l)+(on?": đã có":": chưa có")+'">'+l+'</span>'}).join("")+'</span>'}
+function ttFlag(t){if(t==="Đang nằm viện")return'<span class="flag soon"><i>●</i>Đang nằm viện</span>';if(t==="Ra viện")return'<span class="flag"><i>✓</i>Ra viện</span>';return t?'<span class="flag"><i>○</i>'+esc(t)+'</span>':'<span class="dim">–</span>'}
+function renderBp(){
+  var inp=thc.filter(function(i){return i.tt==="Đang nằm viện"}).length,full=thc.filter(function(i){return aiCount(i)===6}).length,
+    deepN=thc.filter(function(i){return i.deepq}).length,ms=weekStart(TODAY),wk=thc.filter(function(i){return(i.date||"")>=ms}).length;
+  document.getElementById("bpTiles").innerHTML=
+    tile(thc.length,"Tổng số ca","đã ghi nhận trong Notion")+
+    tile(inp,"Đang nằm viện","cần theo dõi diễn tiến")+
+    tile(full+" / "+thc.length,"Đủ 6 phần phân tích","CLS, điều trị, thắc mắc, nắm, sâu, tổng kết")+
+    tile(deepN,"Case đáng đào sâu",wk+" ca mới trong tuần này");
+  var sel=document.getElementById("bpKh");
+  if(!sel.options.length)sel.innerHTML='<option value="all">Mọi khoa</option>'+KHOA.map(function(k){return'<option>'+k+'</option>'}).join("");
+  var q=BP.q.trim().toLowerCase();
+  var list=thc.filter(function(it){
+    if(q&&it.name.toLowerCase().indexOf(q)<0)return false;
+    if(BP.kh!=="all"&&it.khoa!==BP.kh)return false;
+    if(BP.tt==="none"){if(it.tt)return false}else if(BP.tt!=="all"&&it.tt!==BP.tt)return false;
+    if(BP.ai==="miss"&&aiCount(it)===6)return false;if(BP.ai==="full"&&aiCount(it)!==6)return false;return true})
+    .sort(function(a,b){return(b.date||"")<(a.date||"")?-1:(b.date||"")>(a.date||"")?1:0});
+  document.getElementById("bpCount").textContent=list.length+" / "+thc.length+" ca";
+  document.getElementById("bpTb").innerHTML=list.map(function(it){var g=get(it);
+    return'<tr><td class="nmc"><span class="nm">'+link(it)+'</span></td><td data-l="Khoa">'+esc(it.khoa||"–")+'</td><td data-l="Ngày gặp">'+fmt(it.date)+'</td><td data-l="Tình trạng">'+ttFlag(it.tt)+'</td><td data-l="Phân tích AI">'+aiChips(it)+' <span class="dim">'+aiCount(it)+'/6</span></td><td data-l="Đào sâu">'+(it.deepq?'<span class="flag soon"><i>★</i>Đáng đào sâu</span>':'<span class="dim">–</span>')+'</td>'+reviewCell(it,g)+'</tr>'}).join("");
+  var em=document.getElementById("bpEmpty");
+  if(!thc.length){em.classList.remove("hide");em.innerHTML='Chưa có ca bệnh nào trong Notion.<br>Gửi thông tin bệnh nhân cho Claude (nên dùng <b>mã ca</b>, không ghi họ tên/số hồ sơ), Claude sẽ tạo ca và điền phân tích vào Notion, trang này tự cập nhật ở lần đồng bộ kế tiếp.'}
+  else em.classList.add("hide");
+}
+
 /* ---- ÔN TẬP ---- */
 var RV={src:"all",mode:"due"};
 function renderRv(){
@@ -561,7 +614,7 @@ function renderRv(){
 }
 
 /* ---- sự kiện ---- */
-function refresh(){renderOverview();renderMc();renderKho();renderTh();renderRv()}
+function refresh(){renderOverview();renderMc();renderKho();renderTh();renderBp();renderRv()}
 document.addEventListener("click",function(e){
   var more=e.target.closest("[data-more]");if(more){if(more.dataset.more==="mc"){F.limit+=F.step;renderMcTable()}else{K.limit+=K.step;renderKhoTable()}return}
   var go=e.target.closest("[data-go]");if(go){showTab(go.dataset.go);return}
@@ -582,6 +635,7 @@ var nt;document.addEventListener("input",function(e){var t=e.target;if(!t.datase
 function bind(id,obj,key,fn){document.getElementById(id).addEventListener(/Q$/.test(id)?"input":"change",function(e){obj[key]=e.target.value;if(obj.step)obj.limit=obj.step;fn()})}
 bind("mcQ",F,"q",renderMcTable);bind("mcCh",F,"ch",renderMcTable);bind("mcSt",F,"st",renderMcTable);bind("mcTp",F,"tp",renderMcTable);
 bind("khoQ",K,"q",renderKhoTable);bind("khoHe",K,"he",renderKhoTable);bind("khoNh",K,"nh",renderKhoTable);bind("khoSt",K,"st",renderKhoTable);bind("khoPr",K,"pr",renderKhoTable);
+bind("bpQ",BP,"q",renderBp);bind("bpKh",BP,"kh",renderBp);bind("bpTt",BP,"tt",renderBp);bind("bpAi",BP,"ai",renderBp);
 bind("thQ",TK,"q",renderThTable);bind("thKh",TK,"kh",renderThTable);bind("thSt",TK,"st",renderThTable);
 bind("rvSrc",RV,"src",renderRv);bind("rvMode",RV,"mode",renderRv);
 document.getElementById("mcCh").innerHTML='<option value="all">Tất cả các hệ</option>'+Object.keys(CH).map(function(k){return'<option value="'+k+'">'+CH[k]+'</option>'}).join("");
@@ -590,7 +644,7 @@ document.getElementById("thKh").innerHTML='<option value="all">Tất cả khoa</
 document.querySelector("#mc thead").addEventListener("click",function(e){var th=e.target.closest("th");if(!th||!th.dataset.s)return;if(F.sort===th.dataset.s)F.dir*=-1;else{F.sort=th.dataset.s;F.dir=1}renderMcTable()});
 document.querySelector("#kho thead").addEventListener("click",function(e){var th=e.target.closest("th");if(!th||!th.dataset.s)return;if(K.sort===th.dataset.s)K.dir*=-1;else{K.sort=th.dataset.s;K.dir=1}renderKhoTable()});
 document.getElementById("thSub").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;TK.k=b.dataset.k;[].forEach.call(this.children,function(x){x.setAttribute("aria-selected",x===b?"true":"false")});renderThTable()});
-function showTab(id){[].forEach.call(document.getElementById("tabs").children,function(x){x.setAttribute("aria-selected",x.dataset.tab===id?"true":"false")});["ov","mc","kho","th","rv"].forEach(function(s){document.getElementById(s).classList.toggle("hide",s!==id)});window.scrollTo(0,0)}
+function showTab(id){[].forEach.call(document.getElementById("tabs").children,function(x){x.setAttribute("aria-selected",x.dataset.tab===id?"true":"false")});["ov","mc","kho","th","bp","rv"].forEach(function(s){document.getElementById(s).classList.toggle("hide",s!==id)});window.scrollTo(0,0)}
 document.getElementById("tabs").addEventListener("click",function(e){var b=e.target.closest("button");if(b)showTab(b.dataset.tab)});
 var tabQ=(location.search.match(/[?&]tab=(\w+)/)||[])[1];if(tabQ&&document.getElementById(tabQ))showTab(tabQ);
 

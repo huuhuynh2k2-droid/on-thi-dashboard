@@ -2,8 +2,8 @@
 // rows (125 chủ đề): [tên, mã hệ, loại T/O, bắt đầu, kết thúc, id bài học, trạng thái 0/1/2, tự tin, số lần ôn, ngày ôn gần nhất, ghi chú, id trang, ngày học xong]
 // kho: [tên, mã hệ, tầng 1-3, trạng thái, ưu tiên 0-3, tự tin, E/N, cập nhật, id bài, id trang, ngày học xong, link bản dịch (nếu có)]
 window.NOTION_DATA = {
-  snapshot: "2026-09-29",
-  generatedAt: "2026-09-29T15:18:31.486Z",
+  snapshot: "2026-09-30",
+  generatedAt: "2026-09-30T10:14:17.188Z",
   chapters: {"NT":"Nội tiết","TH":"Tiêu hóa","TM":"Tim mạch","HH":"Hô hấp","TN":"Thận – Niệu","TK":"Thần kinh","CX":"Cơ xương khớp","MA":"Máu – Bạch huyết","MD":"Miễn dịch","SP":"Sản phụ khoa","TT":"Tâm thần","DA":"Da","DC":"Đa cơ quan & Khác","BS":"Nhóm bổ sung"},
   rows: [
     ["Rối loạn đường huyết","NT","T","2026-09-14","2026-09-15","3c8cb1425c8180d6b9e1e094e26e1ed1",2,0,0,"","","3cbcb1425c818102be96d7b72393e888","2026-09-18"],
@@ -404,9 +404,18 @@ window.NOTION_DATA = {
     ["Thoát vị bẹn","Ngoại khoa",1,"Cao","Khung 15 phần — chưa điền nội dung chi tiết","3e9cb1425c818195ada6d8e675a2acd9","3e9cb1425c818195ada6d8e675a2acd9",""]
   ],
     cases: [
+    ["MH003","Ngoại khoa",1,"Thoát vị bẹn phải không biến chứng (K40.9); chưa mổ tới 30/09, chờ lên lịch mổ","2026-09-28",0,"3ebcb1425c8181b8bc60e332c37c17a5","3ebcb1425c8181b8bc60e332c37c17a5",""],
+    ["MH002","Ngoại khoa",1,"Trĩ độ IV (K64.3), đau hậu môn và đi cầu ra máu tươi từng đợt; chưa phẫu thuật tới 30/09","2026-09-28",1,"3ebcb1425c8181cf8bcdfbfda0a7b644","3ebcb1425c8181cf8bcdfbfda0a7b644",""],
+    ["MH001","Ngoại khoa",1,"Đau hố chậu phải, thành manh tràng phù nề trên CT: theo dõi viêm ruột thừa hoặc viêm hồi-manh tràng, chưa loại trừ u manh tràng (C18.0); chờ nội soi đại tràng","2026-09-28",1,"3ebcb1425c818154bfe4ff249f9ce775","3ebcb1425c818154bfe4ff249f9ce775",""],
+    ["TH-002","Tiêu hoá (đi thêm)",1,"Sỏi túi mật có viêm (K80.0), đã cắt túi mật nội soi 29/09; gan nhiễm mỡ độ II-III; men gan tăng trước mổ","2026-09-26",1,"3ebcb1425c8181e981bcd409265763c7","3ebcb1425c8181e981bcd409265763c7",""],
+    ["TH-001","Tiêu hoá (đi thêm)",1,"U gan đa ổ, ung thư biểu mô tế bào gan (C22.0), CT gợi ý tái phát, AFP 705 IU/mL; dự kiến TACE trước ghép gan","2026-09-28",1,"3ebcb1425c81811b82cac88f1fb14ffe","3ebcb1425c81811b82cac88f1fb14ffe",""],
     ["NG-001","Ngoại khoa",1,"Sỏi mật khác (ICD-10 K80.8, theo mã trong bệnh án). Chưa có chẩn đoán lâm sàng đầy đủ. Kèm tổn thương thận cấp, giảm tiểu cầu nặng, thiếu máu.","2026-09-29",1,"3eacb1425c81818abd36cf1b1c62c254","3eacb1425c81818abd36cf1b1c62c254",""]
   ],
     deep: [
+    ["Trĩ độ III–IV: chỉ định mổ, chọn kỹ thuật và chuẩn bị trước mổ (nội soi đại tràng, kháng sinh, phòng bí tiểu)","Ngoại khoa",0,"Tuần 28/09–04/10/2026","2026-09-30","3ebcb1425c8181888e89fb3aac719cae","3ebcb1425c8181888e89fb3aac719cae",""],
+    ["Đau hố chậu phải ở người trên 60 tuổi: viêm ruột thừa hay u manh tràng — tiếp cận chẩn đoán, chỉ định mổ và thời điểm nội soi","Ngoại khoa",0,"Tuần 28/09–04/10/2026","2026-09-30","3ebcb1425c818124b1cdd5fe4daffd0a","3ebcb1425c818124b1cdd5fe4daffd0a",""],
+    ["Nguy cơ sỏi ống mật chủ ở bệnh nhân sỏi túi mật: phân tầng ASGE 2019 và chọn MRCP, EUS, chụp đường mật trong mổ","Tiêu hoá (đi thêm)",0,"Tuần 28/09–04/10/2026","2026-09-30","3ebcb1425c81819fb26cee69c3046270","3ebcb1425c81819fb26cee69c3046270",""],
+    ["Bắc cầu và hạ giai đoạn bằng TACE trước ghép gan trong HCC: Milan, UCSF và ngưỡng AFP 400/1000","Tiêu hoá (đi thêm)",0,"Tuần 28/09–04/10/2026","2026-09-30","3ebcb1425c81811ca784d11248e7654e","3ebcb1425c81811ca784d11248e7654e",""],
     ["Rối loạn kiềm toan hỗn hợp và tương tác K–Na–Ca khi truyền bicarbonate trong AKI","Ngoại khoa",0,"Tuần 28/09–04/10/2026","2026-09-29","3eacb1425c81819ab22fdb5e52c7b104","3eacb1425c81819ab22fdb5e52c7b104",""],
     ["Viêm đường mật cấp nặng (TG18 độ III): tiêu chuẩn suy cơ quan và thời điểm dẫn lưu","Ngoại khoa",0,"Tuần 28/09–04/10/2026","2026-09-29","3eacb1425c8181fbac46c13dad58d1c0","3eacb1425c8181fbac46c13dad58d1c0",""]
   ]

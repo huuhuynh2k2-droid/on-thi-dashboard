@@ -3,7 +3,7 @@
 // kho: [tên, mã hệ, tầng 1-3, trạng thái, ưu tiên 0-3, tự tin, E/N, cập nhật, id bài, id trang, ngày học xong, link bản dịch (nếu có)]
 window.NOTION_DATA = {
   snapshot: "2026-10-01",
-  generatedAt: "2026-10-01T00:22:44.655Z",
+  generatedAt: "2026-10-01T13:41:22.716Z",
   chapters: {"NT":"Nội tiết","TH":"Tiêu hóa","TM":"Tim mạch","HH":"Hô hấp","TN":"Thận – Niệu","TK":"Thần kinh","CX":"Cơ xương khớp","MA":"Máu – Bạch huyết","MD":"Miễn dịch","SP":"Sản phụ khoa","TT":"Tâm thần","DA":"Da","DC":"Đa cơ quan & Khác","BS":"Nhóm bổ sung"},
   rows: [
     ["Rối loạn đường huyết","NT","T","2026-09-14","2026-09-15","3c8cb1425c8180d6b9e1e094e26e1ed1",2,0,0,"","","3cbcb1425c818102be96d7b72393e888","2026-09-18"],
@@ -404,17 +404,24 @@ window.NOTION_DATA = {
     ["Thoát vị bẹn","Ngoại khoa",1,"Cao","Khung 15 phần — chưa điền nội dung chi tiết","3e9cb1425c818195ada6d8e675a2acd9","3e9cb1425c818195ada6d8e675a2acd9",""]
   ],
     cases: [
+    ["TH-008","Tiêu hoá (đi thêm)",1,"Viêm tụy cấp do sỏi mật kèm viêm đường mật cấp (OMC dãn 16 mm, bilirubin TP 92.6 giảm còn 19.4), tiền sử mổ sỏi đường mật 2 lần; chưa có kết quả CT, chưa ERCP","2026-10-01",1,"3eccb1425c8181d0bd94c9ea9af45d16","3eccb1425c8181d0bd94c9ea9af45d16",""],
+    ["TH-007","Tiêu hoá (đi thêm)",1,"Nhiễm khuẩn huyết nghi xuất phát từ viêm khớp gối hai bên (cấy máu âm tính) kèm toan lactic nặng (lactat đỉnh 11.05) và hạ kali kéo dài; PCT trên 100 giảm còn 0.628 sau meropenem; nền GERD, THA, ĐTĐ týp 2 (theo mã), suy kiệt","2026-10-01",1,"3eccb1425c8181ef8128cf713b8eb8ab","3eccb1425c8181ef8128cf713b8eb8ab",""],
+    ["TH-006","Tiêu hoá (đi thêm)",1,"Viêm đường mật cấp nghi do sỏi ống mật chủ (K80.3), sỏi túi mật (K80.2): bilirubin TP 40.1, GGT 215, CRP 52.2, OMC 8 mm, chưa thấy sỏi trên siêu âm; THA; hồng cầu to (MCV 103)","2026-10-01",1,"3eccb1425c81815aac17f59e01db23f4","3eccb1425c81815aac17f59e01db23f4",""],
     ["TH-005","Tiêu hoá (đi thêm)",1,"Đau hạ sườn phải do tổn thương gan nhiều ổ (siêu âm Doppler 28/09 gợi ý áp xe gan đa ổ, chưa có CT; phiếu có mã ung thư biểu mô tế bào gan C22.0), sỏi thận hai bên; men gan, bilirubin toàn phần và bạch cầu bình thường","2026-09-30",1,"3ebcb1425c81818dbedccc65b0e5fa62","3ebcb1425c81818dbedccc65b0e5fa62",""],
     ["TH-004","Tiêu hoá (đi thêm)",1,"Viêm tụy cấp (K85.9), nghi do sỏi túi mật, tái phát sau 1 năm; lipase 919, amylase 1554.85, chưa thấy suy tạng theo dữ kiện hiện có","2026-09-30",1,"3ebcb1425c818105a309cfc1896dcf42","3ebcb1425c818105a309cfc1896dcf42",""],
     ["TH-003","Tiêu hoá (đi thêm)",1,"Xơ gan mất bù (K74.6) với bệnh não gan độ II, báng độ 3, vàng da ứ mật, thiếu máu nặng; đi cầu phân đen 3 lần trước vào viện","2026-09-30",1,"3ebcb1425c8181cb9d1bca83ecaa59f2","3ebcb1425c8181cb9d1bca83ecaa59f2",""],
     ["MH003","Ngoại khoa",1,"Thoát vị bẹn phải không biến chứng (K40.9); chưa mổ tới 30/09, chờ lên lịch mổ","2026-09-28",0,"3ebcb1425c8181b8bc60e332c37c17a5","3ebcb1425c8181b8bc60e332c37c17a5",""],
     ["MH002","Ngoại khoa",1,"Trĩ độ IV (K64.3), đau hậu môn và đi cầu ra máu tươi từng đợt; chưa phẫu thuật tới 30/09","2026-09-28",1,"3ebcb1425c8181cf8bcdfbfda0a7b644","3ebcb1425c8181cf8bcdfbfda0a7b644",""],
     ["MH001","Ngoại khoa",1,"Đau hố chậu phải, thành manh tràng phù nề trên CT: theo dõi viêm ruột thừa hoặc viêm hồi-manh tràng, chưa loại trừ u manh tràng (C18.0); chờ nội soi đại tràng","2026-09-28",1,"3ebcb1425c818154bfe4ff249f9ce775","3ebcb1425c818154bfe4ff249f9ce775",""],
-    ["TH-002","Tiêu hoá (đi thêm)",1,"Sỏi túi mật có viêm (K80.0), đã cắt túi mật nội soi 29/09; gan nhiễm mỡ độ II-III; men gan tăng trước mổ","2026-09-26",1,"3ebcb1425c8181e981bcd409265763c7","3ebcb1425c8181e981bcd409265763c7",""],
-    ["TH-001","Tiêu hoá (đi thêm)",1,"U gan đa ổ, ung thư biểu mô tế bào gan (C22.0), CT gợi ý tái phát, AFP 705 IU/mL; dự kiến TACE trước ghép gan","2026-09-28",1,"3ebcb1425c81811b82cac88f1fb14ffe","3ebcb1425c81811b82cac88f1fb14ffe",""],
+    ["TH-002","Ngoại khoa",1,"Sỏi túi mật có viêm (K80.0), đã cắt túi mật nội soi 29/09; gan nhiễm mỡ độ II-III; men gan tăng trước mổ","2026-09-26",1,"3ebcb1425c8181e981bcd409265763c7","3ebcb1425c8181e981bcd409265763c7",""],
+    ["TH-001","Ngoại khoa",1,"U gan đa ổ, ung thư biểu mô tế bào gan (C22.0), CT gợi ý tái phát, AFP 705 IU/mL; dự kiến TACE trước ghép gan","2026-09-28",1,"3ebcb1425c81811b82cac88f1fb14ffe","3ebcb1425c81811b82cac88f1fb14ffe",""],
     ["NG-001","Ngoại khoa",1,"Sỏi mật khác (ICD-10 K80.8, theo mã trong bệnh án). Chưa có chẩn đoán lâm sàng đầy đủ. Kèm tổn thương thận cấp, giảm tiểu cầu nặng, thiếu máu.","2026-09-29",1,"3eacb1425c81818abd36cf1b1c62c254","3eacb1425c81818abd36cf1b1c62c254",""]
   ],
     deep: [
+    ["Viêm tụy do sỏi mật kèm viêm đường mật: thời điểm ERCP, vai trò MRCP/EUS khi bilirubin tự giảm, và sỏi ống mật chủ tái phát sau mổ đường mật","Tiêu hoá (đi thêm)",0,"Tuần 26/10–01/11/2026","2026-10-26","3eccb1425c8181f2931ae6451af77fb4","3eccb1425c8181f2931ae6451af77fb4",""],
+    ["Toan lactic kéo dài trong nhiễm khuẩn huyết ở người cao tuổi suy kiệt: loại A hay loại B (thiếu thiamin khi truyền dextrose), khoảng trống anion hiệu chỉnh albumin và delta - delta","Tiêu hoá (đi thêm)",0,"Tuần 19/10–25/10/2026","2026-10-19","3eccb1425c8181549d2dece8d1e9a192","3eccb1425c8181549d2dece8d1e9a192",""],
+    ["Khớp gối sưng nóng đỏ ở người cao tuổi đang sốt: viêm khớp nhiễm khuẩn hay CPPD, khi nào chọc dịch khớp, dẫn lưu và thời gian kháng sinh","Tiêu hoá (đi thêm)",0,"Tuần 19/10–25/10/2026","2026-10-19","3eccb1425c8181939ef8ed76d41c23cd","3eccb1425c8181939ef8ed76d41c23cd",""],
+    ["Kháng sinh kinh nghiệm trong viêm đường mật cấp độ I - II: khi nào cần phủ kỵ khí, vì sao tránh clindamycin, dùng bao lâu khi chưa kiểm soát nguồn","Tiêu hoá (đi thêm)",0,"Tuần 12/10–18/10/2026","2026-10-12","3eccb1425c81816a83c7c4c5e51f7d88","3eccb1425c81816a83c7c4c5e51f7d88",""],
     ["Tổn thương gan khu trú: phân biệt áp xe gan (mủ, amip, ký sinh trùng) với u gan, khi nào dùng kháng sinh, dẫn lưu hay sinh thiết","Tiêu hoá (đi thêm)",0,"Tuần 12/10–18/10/2026","2026-10-12","3ebcb1425c81814baaedd33b2165a94d","3ebcb1425c81814baaedd33b2165a94d",""],
     ["Viêm tụy cấp tái phát do sỏi túi mật: khi nào cần CT, có cần kháng sinh dự phòng và khi nào cắt túi mật","Tiêu hoá (đi thêm)",0,"Tuần 05/10–11/10/2026","2026-10-05","3ebcb1425c8181518890c0741a0c3d9b","3ebcb1425c8181518890c0741a0c3d9b",""],
     ["Xơ gan mất bù có đi cầu phân đen và bệnh não gan: xử trí xuất huyết do tăng áp cửa, chọc dịch báng chẩn đoán và khi nào ngừng lợi tiểu (hạ K, hạ Na)","Tiêu hoá (đi thêm)",0,"Tuần 05/10–11/10/2026","2026-10-05","3ebcb1425c8181ab82b3e431ee952786","3ebcb1425c8181ab82b3e431ee952786",""],

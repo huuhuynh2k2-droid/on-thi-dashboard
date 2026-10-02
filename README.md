@@ -6,6 +6,8 @@ Dữ liệu đọc từ Notion mỗi 30 phút bằng GitHub Actions (`.github/wo
 ## Các file
 
 - `index.html`: trang dashboard (mở qua GitHub Pages)
+- `lich-tuan.html`: lịch tuần — Chủ nhật nhập lịch cố định (BV, trực, việc riêng), trang tự xếp giờ tự học từ dữ liệu Notion (125 chủ đề trễ hạn, vấn đề đào sâu, chuyên đề khoa đang đi, bài đến hạn ôn). Dữ liệu nhập lưu trong trình duyệt (Xuất/Nhập JSON để chuyển máy).
+- `lich-tuan-data.js`: lịch tuần do Claude viết khi bấm “Gửi Claude xếp lịch” và dán vào chat; nếu tuần nào có bản này thì trang ưu tiên hiển thị. Định dạng ghi ở đầu file.
 - `notion-data.js`: dữ liệu từ Notion, **tự sinh**, đừng sửa tay
 - `scripts/sync-notion.mjs`: script đọc Notion
 - `.github/workflows/sync-notion.yml`: lịch chạy tự động

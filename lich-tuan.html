@@ -326,8 +326,7 @@ var N=now(),TODAY=N.date;
 
 /* ---------- trạng thái ---------- */
 var DEF_CFG={wake:"05:30",sleep:"23:00",wd:4,we:6,mc:5,sun:true,ca:true};
-var DEF_FIXED=[[0,"07:00","11:30","bv1","Ngoại tiêu hoá"],[1,"07:00","11:30","bv1","Ngoại tiêu hoá"],[2,"07:00","11:30","bv1","Ngoại tiêu hoá"],[3,"07:00","11:30","bv1","Ngoại tiêu hoá"],[4,"07:00","11:30","bv1","Ngoại tiêu hoá"],[5,"07:00","11:30","bv1","Ngoại tiêu hoá"],
-  [0,"13:30","16:30","bv2","Nội tiêu hoá"],[1,"13:30","16:30","bv2","Nội tiêu hoá"],[2,"13:30","16:30","bv2","Nội tiêu hoá"],[3,"13:30","16:30","bv2","Nội tiêu hoá"],[4,"13:30","16:30","bv2","Nội tiêu hoá"]];
+var DEF_FIXED=[[0,"07:00","11:30","bv1","Ngoại tiêu hoá"],[1,"07:00","11:30","bv1","Ngoại tiêu hoá"],[2,"07:00","11:30","bv1","Ngoại tiêu hoá"],[3,"07:00","11:30","bv1","Ngoại tiêu hoá"],[4,"07:00","11:30","bv1","Ngoại tiêu hoá"]];
 var L={cfg:{},weeks:{},theme:null,tpl:null};
 try{var raw=localStorage.getItem(KEY);if(raw)L=JSON.parse(raw)}catch(e){}
 L.cfg=Object.assign({},DEF_CFG,L.cfg||{});L.weeks=L.weeks||{};
@@ -450,9 +449,38 @@ function generate(w){
 }
 
 /* ---------- nguồn kế hoạch: Claude hay tự động ---------- */
+/* Lịch cố định (LICH_TUAN_MAU): tự điền tên bài từ Notion cho từng tuần.
+   Bài đã xong trong chính tuần đó vẫn giữ chỗ để lịch không bị xô lệch khi tick xong. */
+var MAU=window.LICH_TUAN_MAU||null,MAUC={};
+function keepIn(st,doneAt,w){return st!==2||(doneAt&&doneAt>=w)}
+function expandMau(w){
+  if(!MAU)return null;if(MAUC[w])return MAUC[w];
+  var we=addDays(w,6),need=MAU.blocks.filter(function(b){return b.fill==="mc1"}).length;
+  var mc=mcItems().filter(function(it){return keepIn(it.st,it.doneAt,w)&&(it.kt||it.bd)}).sort(function(a,b){return(a.kt||a.bd)<(b.kt||b.bd)?-1:1}).slice(0,need);
+  function deepList(test){return(TH.deep||[]).filter(function(r){var g=dget(mid("thd",r[6],r[0]),r[2]);return test(r[1])&&r[4]&&r[4]<=we&&keepIn(g.st,g.doneAt,w)}).sort(function(a,b){return a[4]<b[4]?-1:1})
+    .map(function(r){return{t:r[0],sub:r[1]+(r[4]<w?" · tồn từ "+dm(r[4]):" · tuần này"),link:r[5]}})}
+  var rot=curRotation(w);
+  var ngoai=deepList(function(x){return x==="Ngoại khoa"}).concat((TH.topics||[]).filter(function(r){var g=dget(mid("tht",r[6],r[0]),r[2]);return r[1]===rot&&keepIn(g.st,g.doneAt,w)})
+    .map(function(r){return{t:r[0],sub:"Chuyên đề "+r[1]+" cần nắm",link:r[5]}}));
+  var noi=deepList(function(x){return /Tiêu ho/.test(x)});
+  var rev=buildPool(w).pool.filter(function(x){return x.k==="rev"}).map(function(x){return{t:x.t,sub:x.sub,link:x.link}});
+  var Q={ngoai:ngoai,noi:noi,rev:rev},mi=0,cur=null,late=0;
+  mc.forEach(function(it){if((it.kt||it.bd)<w)late++});
+  var blocks=MAU.blocks.map(function(b){var o={d:b.d,s:b.s,e:b.e,k:b.k,t:b.t,sub:b.sub,link:""};
+    if(b.fill==="mc1"){cur=mc[mi++]||null}
+    if((b.fill==="mc1"||b.fill==="mc2")&&cur){var dd=cur.kt||cur.bd,lt=diff(dd,w),tag=(CH[cur.grp]||cur.grp)+(lt>0?" · trễ "+lt+" ngày":" · hạn "+dm(dd));
+      o.t=cur.name;o.sub=b.sub+" · "+tag;o.link=cur.link}
+    else if(Q[b.fill]&&Q[b.fill].length){var x=Q[b.fill].shift();o.t=x.t;o.sub=b.t+" · "+x.sub;o.link=x.link||""}
+    return o});
+  var note=MAU.note||"";
+  if(mc.length)note+="\n\nTuần này 125 chủ đề: "+mc.map(function(it){return it.name}).join(" → ")+(late?" ("+late+" bài đang trễ hạn, xếp lên trước).":".");
+  if(Q.ngoai.length||Q.noi.length)note+="\nCòn "+(Q.ngoai.length+Q.noi.length)+" vấn đề đào sâu chưa có chỗ: dồn vào khối Dự trữ CN.";
+  return(MAUC[w]={note:note,tips:MAU.tips||[],blocks:blocks,mau:1});
+}
+function clOf(w){return CL[w]||expandMau(w)}
 function curPlan(){
-  var c=CL[WK];
-  if(c&&view.src!=="auto-only"){return{src:"claude",note:c.note||"",tips:c.tips||[],blocks:(c.blocks||[]).map(function(b,i){var d=b.d!=null?+b.d:diff(WK,b.date);return{d:d,s:toM(b.s),e:toM(b.e)<=toM(b.s)?1440:toM(b.e),k:b.k||"oth",t:b.t||"",sub:b.sub||"",link:b.link||"",key:"cl:"+i+":"+(b.t||""),fixed:/^(bv1|bv2|truc|oth|rest)$/.test(b.k)?1:0}})}}
+  var c=clOf(WK);
+  if(c&&view.src!=="auto-only"){return{src:"claude",mau:!!c.mau,note:c.note||"",tips:c.tips||[],blocks:(c.blocks||[]).map(function(b,i){var d=b.d!=null?+b.d:diff(WK,b.date);return{d:d,s:toM(b.s),e:toM(b.e)<=toM(b.s)?1440:toM(b.e),k:b.k||"oth",t:b.t||"",sub:b.sub||"",link:b.link||"",key:(c.mau?"mau:":"cl:")+i+":"+(b.t||""),fixed:/^(bv1|bv2|truc|oth|rest)$/.test(b.k)?1:0}})}}
   var o=W(WK);return{src:"auto",blocks:o.plan||[],gen:o.gen}
 }
 
@@ -466,9 +494,9 @@ function render(){
   var pl=curPlan(),blocks=pl.blocks;
   document.getElementById("wkLabel").textContent="Tuần "+dm(WK)+" – "+dm(addDays(WK,6))+"/"+addDays(WK,6).slice(0,4);
   var pill=document.getElementById("srcPill"),tg=document.getElementById("srcToggle");
-  if(pl.src==="claude"){pill.innerHTML='<span class="pill claude">🤖 Claude đề xuất</span>'}
+  if(pl.src==="claude"){pill.innerHTML=pl.mau?'<span class="pill claude">📌 Lịch cố định</span>':'<span class="pill claude">🤖 Claude đề xuất</span>'}
   else if(blocks.length){pill.innerHTML='<span class="pill auto">⚙️ Bản nháp tự động</span>'}else pill.innerHTML='<span class="pill">Chưa có lịch</span>';
-  if(CL[WK]){tg.classList.remove("hide");tg.textContent=view.src==="auto-only"?"Xem bản Claude":"Xem bản tự động"}else tg.classList.add("hide");
+  if(clOf(WK)){tg.classList.remove("hide");tg.textContent=view.src==="auto-only"?(CL[WK]?"Xem bản Claude":"Xem lịch cố định"):"Xem bản tự động"}else tg.classList.add("hide");
   var gen=W(WK).gen,sub="Mở mỗi ngày để xem việc kế tiếp. Chủ nhật: nhập lịch cố định → Tạo đề xuất hoặc Gửi Claude xếp lịch.";
   if(D.snapshot)sub+=" Dữ liệu Notion: "+dm(D.snapshot)+".";
   document.getElementById("sub").textContent=sub;
@@ -486,7 +514,7 @@ function renderToday(blocks){
 }
 function renderNote(pl){
   var el=document.getElementById("noteCard"),h="";
-  if(pl.src==="claude"){h='<h2>Ghi chú của Claude</h2><div style="font-size:14px;margin-top:6px">'+esc(pl.note).replace(/\n/g,"<br>")+'</div>'+(pl.tips.length?'<div class="tipbox"><b>Mẹo tuần này</b><ul>'+pl.tips.map(function(t){return"<li>"+esc(t)+"</li>"}).join("")+'</ul></div>':"")}
+  if(pl.src==="claude"){h='<h2>'+(pl.mau?"Lịch cố định":"Ghi chú của Claude")+'</h2><div style="font-size:14px;margin-top:6px">'+esc(pl.note).replace(/\n/g,"<br>")+'</div>'+(pl.tips.length?'<div class="tipbox"><b>Mẹo tuần này</b><ul>'+pl.tips.map(function(t){return"<li>"+esc(t)+"</li>"}).join("")+'</ul></div>':"")}
   else{
     var pb=buildPool(WK),g=pl.gen;
     h='<h2>Ưu tiên tuần này</h2><div class="hint">Thứ tự xếp: việc riêng có hạn → 125 chủ đề trễ hạn → vấn đề đào sâu đến tuần → chuyên đề '+esc(pb.rot)+' → ôn lại.</div>'+
@@ -588,7 +616,7 @@ document.getElementById("addExtra").onclick=function(){var t=document.getElement
   c.wake=document.getElementById("cWake").value||c.wake;c.sleep=document.getElementById("cSleep").value||c.sleep;c.wd=+document.getElementById("cWd").value||c.wd;c.we=+document.getElementById("cWe").value||c.we;
   var m=document.getElementById("cMc").value;c.mc=m===""?c.mc:Math.max(0,+m);c.sun=document.getElementById("cSun").checked;c.ca=document.getElementById("cCa").checked;save()})});
 function regen(){if(!fixedOf(WK)){W(WK).fixed=JSON.parse(JSON.stringify(L.tpl||DEF_FIXED));toast("Dùng lịch cố định gần nhất, nhớ kiểm tra lại")}
-  var keepDone=W(WK).done;generate(WK);W(WK).done=keepDone;save();view.src="auto-only";if(!CL[WK])view.src="auto";setTab("plan");render();
+  var keepDone=W(WK).done;generate(WK);W(WK).done=keepDone;save();view.src="auto-only";if(!clOf(WK))view.src="auto";setTab("plan");render();
   var g=W(WK).gen;if(g&&g.left.length)toast("Đã xếp lịch · còn "+g.left.length+" việc chưa đủ giờ");else toast("Đã xếp lịch tuần")}
 document.getElementById("regen").onclick=regen;document.getElementById("regen2").onclick=regen;
 document.getElementById("srcToggle").onclick=function(){view.src=view.src==="auto-only"?"auto":"auto-only";render()};
@@ -621,7 +649,7 @@ document.getElementById("theme").onclick=function(){var dark=L.theme?L.theme==="
 /* dùng chung chế độ sáng/tối với bảng theo dõi nếu chưa chọn riêng */
 if(!L.theme&&DS.theme)L.theme=DS.theme;
 applyTheme();
-if(!W(WK).plan&&!CL[WK]){if(!fixedOf(WK))W(WK).fixed=JSON.parse(JSON.stringify(L.tpl||DEF_FIXED));generate(WK)}
+if(!W(WK).plan&&!clOf(WK)){if(!fixedOf(WK))W(WK).fixed=JSON.parse(JSON.stringify(L.tpl||DEF_FIXED));generate(WK)}
 render();
 setInterval(function(){N=now();if(N.date!==TODAY){TODAY=N.date}if(view.tab==="plan")render()},60000);
 })();

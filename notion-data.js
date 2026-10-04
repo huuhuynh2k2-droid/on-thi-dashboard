@@ -2,8 +2,8 @@
 // rows (125 chủ đề): [tên, mã hệ, loại T/O, bắt đầu, kết thúc, id bài học, trạng thái 0/1/2, tự tin, số lần ôn, ngày ôn gần nhất, ghi chú, id trang, ngày học xong]
 // kho: [tên, mã hệ, tầng 1-3, trạng thái, ưu tiên 0-3, tự tin, E/N, cập nhật, id bài, id trang, ngày học xong, link bản dịch (nếu có)]
 window.NOTION_DATA = {
-  snapshot: "2026-10-02",
-  generatedAt: "2026-10-02T15:17:15.830Z",
+  snapshot: "2026-10-04",
+  generatedAt: "2026-10-04T06:09:20.456Z",
   chapters: {"NT":"Nội tiết","TH":"Tiêu hóa","TM":"Tim mạch","HH":"Hô hấp","TN":"Thận – Niệu","TK":"Thần kinh","CX":"Cơ xương khớp","MA":"Máu – Bạch huyết","MD":"Miễn dịch","SP":"Sản phụ khoa","TT":"Tâm thần","DA":"Da","DC":"Đa cơ quan & Khác","BS":"Nhóm bổ sung"},
   rows: [
     ["Rối loạn đường huyết","NT","T","2026-09-14","2026-09-15","3c8cb1425c8180d6b9e1e094e26e1ed1",2,0,0,"","","3cbcb1425c818102be96d7b72393e888","2026-09-18"],
@@ -12,10 +12,9 @@ window.NOTION_DATA = {
     ["Rối loạn lipid máu","NT","T","2026-09-22","2026-09-22","3c9cb1425c8180ef8a51c898219a811f",2,0,0,"","","3cbcb1425c8181b4ac6aec45ca243c62","2026-09-26"],
     ["Khối ở cổ","NT","T","2026-11-08","2026-11-08","3c9cb1425c8180b0a061dbbba5fe953c",0,0,0,"","","3cbcb1425c8181788bd1ef76f93975f8",""],
     ["Ôn tập tổng hợp — Hệ Nội tiết","NT","O","2026-11-14","2026-11-25","",0,0,0,"","","3cbcb1425c818121827ec888a546f7c6",""],
-    ["Buồn nôn/Nôn","TH","T","2026-09-24","2026-09-23","3cbcb1425c81813fb3daf13dbd55a6d5",0,0,0,"2026-10-10","","3cbcb1425c81819284fac95ff96d04a8",""],
     ["Đau bụng cấp","TH","T","2026-10-05","2026-10-06","3cbcb1425c8181819d1cd99f4d65f62d",1,0,0,"","","3cbcb1425c8181e6812ef900216e8fba",""],
     ["Bất thường chức năng gan/Men gan","TH","T","2026-10-07","2026-10-08","3cbcb1425c8181679bc6d09008374cdb",0,0,0,"","","3cbcb1425c81811493f4f5a1bd5cc017",""],
-    ["Nghẹn, nuốt khó","TH","T","2026-10-08","2026-10-01","3cbcb1425c8181a29d45f14d573e3be4",0,0,0,"","","3cbcb1425c8181038facf382716b1466",""],
+    ["Nghẹn, nuốt khó","TH","T","2026-10-09","2026-10-01","3cbcb1425c8181a29d45f14d573e3be4",0,0,0,"","","3cbcb1425c8181038facf382716b1466",""],
     ["Báng bụng","TH","T","2026-10-12","2026-10-12","3cbcb1425c8181ed847bf6c2c04216f5",0,0,0,"","","3cbcb1425c8181e3b722d58519f44adc",""],
     ["Khối ở bụng","TH","T","2026-10-13","2026-10-13","3cbcb1425c8181ffa2dce3ffbf4a7996",0,0,0,"","","3cbcb1425c818110aba4e4477fa309f5",""],
     ["Trướng bụng","TH","T","2026-10-14","2026-10-14","3cbcb1425c818120bcb6d800377368c7",0,0,0,"","","3cbcb1425c8181afb21cd8e1545c846e",""],
@@ -26,6 +25,7 @@ window.NOTION_DATA = {
     ["Tiêu chảy cấp","TH","T","2026-10-27","2026-10-27","3cbcb1425c818197ae77ea96c7ccebe4",0,0,0,"","","3cbcb1425c81811daaa9fdaf48e2d831",""],
     ["Vàng da","TH","T","2026-10-28","2026-11-02","3cbcb1425c8181d89d33cf0c72c4522d",0,0,0,"","","3cbcb1425c8181a0b1d4ece0198cffb1",""],
     ["Đau bụng mạn/Ợ nóng/Ợ trớ/Khó tiêu","TH","T","2026-11-02","2026-11-04","3cbcb1425c8181e696cbe9344d62baaa",0,0,0,"","","3cbcb1425c81810bafd3c8942000b528",""],
+    ["Buồn nôn/Nôn","TH","T","2026-11-03","2026-09-23","3cbcb1425c81813fb3daf13dbd55a6d5",0,0,0,"2026-10-10","","3cbcb1425c81819284fac95ff96d04a8",""],
     ["Táo bón/Thay đổi thói quen đi tiêu","TH","T","2026-11-04","2026-10-28","3cbcb1425c818132b79ff711a9f35f23",0,0,0,"","","3cbcb1425c818181b31bc88446c32986",""],
     ["Sụt cân/Suy dinh dưỡng/Tư vấn chế độ ăn","TH","T","2026-11-05","2026-11-05","3c9cb1425c81804f9637e98e71640bc6",0,0,0,"","","3cbcb1425c81816a94a6ed35c4bcbf37",""],
     ["Tăng cân – Béo phì","TH","T","2026-11-09","2026-11-09","3c9cb1425c8180f39368c4a2e7507194",0,0,0,"","","3cbcb1425c81816a8f16f9f76d928b51",""],

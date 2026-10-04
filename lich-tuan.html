@@ -175,6 +175,7 @@ dialog h3{margin:0 0 4px;font-size:16px}
       <a class="btn" href="https://huuhuynh2k2-droid.github.io/luyenthiGPHN/" target="_blank" rel="noopener">📝 Ngân hàng đề</a>
       <button class="btn" id="theme">🌓 Sáng / Tối</button>
       <button class="btn" id="copyClaude" title="Sao chép lịch cố định + việc tồn để dán cho Claude xếp lịch">🤖 Gửi Claude xếp lịch</button>
+      <button class="btn" id="ics" title="Tải file .ics của tuần đang xem để nhập vào Google Lịch / Apple Lịch / Notion Calendar">📅 Google Lịch</button>
       <button class="btn" id="exp">⬇️ Xuất</button>
       <button class="btn" id="imp">⬆️ Nhập</button>
       <input type="file" id="file" accept="application/json" class="hide">
@@ -641,6 +642,21 @@ document.getElementById("copyClaude").onclick=function(){
   var txt=lines.join("\n");
   (navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(function(){toast("Đã chép · dán vào chat với Claude")},function(){prompt("Chép đoạn này gửi Claude:",txt)});
 };
+/* Xuất .ics: nhập vào Google Lịch / Apple Lịch / Notion Calendar. UID cố định → nhập lại không bị nhân đôi. */
+function icsEsc(t){return String(t||"").replace(/\\/g,"\\\\").replace(/;/g,"\;").replace(/,/g,"\\,").replace(/\n/g,"\\n")}
+function icsDT(day,m){var dt=addDays(WK,day);if(m>=1440){dt=addDays(dt,1);m-=1440}return dt.replace(/-/g,"")+"T"+pad(Math.floor(m/60))+pad(m%60)+"00"}
+function icsFold(l){var o="";while(l.length>70){o+=l.slice(0,70)+"\r\n ";l=l.slice(70)}return o+l}
+document.getElementById("ics").onclick=function(){
+  var pl=curPlan(),stamp=new Date().toISOString().replace(/[-:]/g,"").replace(/\.\d+/,"");
+  var L2=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//HHM//Lich Tuan//VI","CALSCALE:GREGORIAN","X-WR-CALNAME:Lịch học HHM","X-WR-TIMEZONE:Asia/Ho_Chi_Minh"];
+  pl.blocks.filter(function(b){return b.k!=="rest"}).forEach(function(b,i){
+    var uid=(WK+"-"+b.d+"-"+hm(b.s)+"-"+b.k).replace(/:/g,"")+"@on-thi-dashboard";
+    var desc=[KN[b.k],b.sub].filter(Boolean).join(" · ")+(b.link?"\nNotion: https://www.notion.so/"+b.link:"");
+    L2.push("BEGIN:VEVENT","UID:"+uid,"DTSTAMP:"+stamp,"DTSTART;TZID=Asia/Ho_Chi_Minh:"+icsDT(b.d,b.s),"DTEND;TZID=Asia/Ho_Chi_Minh:"+icsDT(b.d,b.e),
+      "SUMMARY:"+icsEsc(b.t),"DESCRIPTION:"+icsEsc(desc),"CATEGORIES:"+icsEsc(KN[b.k]),"END:VEVENT")});
+  L2.push("END:VCALENDAR");
+  var a=document.createElement("a");a.href=URL.createObjectURL(new Blob([L2.map(icsFold).join("\r\n")],{type:"text/calendar"}));a.download="lich-tuan-"+WK+".ics";a.click();
+  toast("Đã tải .ics · Google Lịch → Cài đặt → Nhập")};
 document.getElementById("exp").onclick=function(){var a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(L,null,1)],{type:"application/json"}));a.download="lich-tuan-"+TODAY+".json";a.click()};
 document.getElementById("imp").onclick=function(){document.getElementById("file").click()};
 document.getElementById("file").onchange=function(e){var f=e.target.files[0];if(!f)return;var r=new FileReader();r.onload=function(){try{var o=JSON.parse(r.result);if(!o.weeks)throw 0;L=o;L.cfg=Object.assign({},DEF_CFG,L.cfg||{});save();render();toast("Đã nhập dữ liệu")}catch(x){toast("File không đúng định dạng")}};r.readAsText(f)};

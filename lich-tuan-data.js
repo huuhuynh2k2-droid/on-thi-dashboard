@@ -12,6 +12,29 @@
 // Hết bài để điền thì khối giữ nguyên t/sub ghi sẵn.
 
 window.LICH_TUAN = {
+"2026-09-28": {
+ "them": 1,
+ "note": "Tối CN 04/10 thêm 2 khối: 20:00–22:00 học bài Tổng quan bệnh lý đường mật · 22:00–24:00 xem điều trị & cách làm bệnh án khoa Nội tiêu hoá (đi thêm). Đã đồng bộ Google Calendar.",
+ "blocks": [
+  {
+   "d": 6,
+   "s": "20:00",
+   "e": "22:00",
+   "k": "deep",
+   "t": "Học bài: Tổng quan bệnh lý đường mật",
+   "sub": "Kho tri thức · Hệ Tiêu hoá · P1 giải phẫu–cơ chế (30′) → P2 tiếp cận–CLS (20′) → P3 túi mật TG18 (25′) → P4 OMC ASGE + viêm đường mật TG18 (25′) → P5 tắc mật ác tính + VTC do sỏi (15′) → P6 thuật toán (5′)",
+   "link": "3efcb1425c8181d7bf8ffef3897921bd"
+  },
+  {
+   "d": 6,
+   "s": "22:00",
+   "e": "24:00",
+   "k": "deep",
+   "t": "Nội tiêu hoá (đi thêm): điều trị & cách làm bệnh án",
+   "sub": "Xem phác đồ điều trị các bệnh thường gặp tại khoa + cách làm bệnh án Nội tiêu hoá"
+  }
+ ]
+},
 "2026-10-05": {
  "note": "Tuần 05–11/10 · 125 chủ đề: Đau bụng cấp (T2–T3) → Bất thường chức năng gan (T4–T5) → Nghẹn, nuốt khó (T6).\nCó 2 ca trực Nội tiêu hoá (đi thêm) 17:00–06:00: T3 06/10 và CN 11/10. Tối T3 nhường cho trực; T4 sau trực chỉ học bài gan nhẹ, ngủ bù trưa. Ba vấn đề đào sâu bị lỡ (viêm đường mật TG18, sỏi OMC ASGE, thoát vị bẹn) dời sang T7.\nSáng sớm ôn 4 bài Nội tiết: Đường huyết (T2) → Lipid (T3) → Tuyến giáp (T5) → Cushing (T6); vòng 2 làm câu sai cả 4 bài (T7); vòng 3 đề trộn 40 câu (CN sáng).",
  "tips": [

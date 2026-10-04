@@ -478,7 +478,13 @@ function expandMau(w){
   if(Q.ngoai.length||Q.noi.length)note+="\nCòn "+(Q.ngoai.length+Q.noi.length)+" vấn đề đào sâu chưa có chỗ: dồn vào khối Dự trữ CN.";
   return(MAUC[w]={note:note,tips:MAU.tips||[],blocks:blocks,mau:1});
 }
-function clOf(w){return CL[w]||expandMau(w)}
+/* Tuần chỉ có vài việc thêm (them:1): giữ lịch cố định, khối thêm thay chỗ các khối trùng giờ cùng ngày. */
+function clOf(w){var c=CL[w];
+  if(c&&c.them){var m=expandMau(w);if(!m)return c;var ex=c.blocks||[];
+    function rng(b){var s=toM(b.s),e=toM(b.e);return[s,e<=s?1440:e]}
+    var bl=m.blocks.filter(function(b){var r=rng(b);return!ex.some(function(x){var q=rng(x);return x.d===b.d&&q[0]<r[1]&&r[0]<q[1]})}).concat(ex);
+    return{note:(c.note?c.note+"\n\n":"")+m.note,tips:m.tips,blocks:bl,mau:1}}
+  return c||expandMau(w)}
 function curPlan(){
   var c=clOf(WK);
   if(c&&view.src!=="auto-only"){return{src:"claude",mau:!!c.mau,note:c.note||"",tips:c.tips||[],blocks:(c.blocks||[]).map(function(b,i){var d=b.d!=null?+b.d:diff(WK,b.date);return{d:d,s:toM(b.s),e:toM(b.e)<=toM(b.s)?1440:toM(b.e),k:b.k||"oth",t:b.t||"",sub:b.sub||"",link:b.link||"",key:(c.mau?"mau:":"cl:")+i+":"+(b.t||""),fixed:/^(bv1|bv2|truc|oth|rest)$/.test(b.k)?1:0}})}}

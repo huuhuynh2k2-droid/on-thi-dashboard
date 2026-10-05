@@ -2,8 +2,8 @@
 // rows (125 chủ đề): [tên, mã hệ, loại T/O, bắt đầu, kết thúc, id bài học, trạng thái 0/1/2, tự tin, số lần ôn, ngày ôn gần nhất, ghi chú, id trang, ngày học xong]
 // kho: [tên, mã hệ, tầng 1-3, trạng thái, ưu tiên 0-3, tự tin, E/N, cập nhật, id bài, id trang, ngày học xong, link bản dịch (nếu có)]
 window.NOTION_DATA = {
-  snapshot: "2026-10-04",
-  generatedAt: "2026-10-04T17:16:03.924Z",
+  snapshot: "2026-10-05",
+  generatedAt: "2026-10-05T09:24:01.768Z",
   chapters: {"NT":"Nội tiết","TH":"Tiêu hóa","TM":"Tim mạch","HH":"Hô hấp","TN":"Thận – Niệu","TK":"Thần kinh","CX":"Cơ xương khớp","MA":"Máu – Bạch huyết","MD":"Miễn dịch","SP":"Sản phụ khoa","TT":"Tâm thần","DA":"Da","DC":"Đa cơ quan & Khác","BS":"Nhóm bổ sung"},
   rows: [
     ["Rối loạn đường huyết","NT","T","2026-09-14","2026-09-15","3c8cb1425c8180d6b9e1e094e26e1ed1",2,0,0,"","","3cbcb1425c818102be96d7b72393e888","2026-09-18"],
@@ -147,6 +147,9 @@ window.NOTION_DATA = {
     ["Ôn tập tổng hợp — Nhóm bổ sung (121-125 - cần đối chiếu)","BS","O","2027-08-30","2027-09-02","",0,0,0,"","","3cbcb1425c818188ac2af349b65df80d",""]
   ],
   kho: [
+    ["Đồng thuận ADA/EASD 2026 – Quản lý đái tháo đường típ 2","NT",3,0,0,0,"","2026-10-05","3f0cb1425c8181a8adc2e92c0fcdb14f","3f0cb1425c8181a8adc2e92c0fcdb14f","","https://huuhuynh2k2-droid.github.io/thu-vien-y-khoa/docs/dong-thuan-ada-easd-2026-dtd-tip-2.html"],
+    ["Kiểm soát đường huyết nội viện theo ADA 2026 (Chương 16) – Insulin nội viện, DKA/HHS","NT",3,0,0,0,"","2026-10-05","3f0cb1425c818144a93aeb4a85e038fd","3f0cb1425c818144a93aeb4a85e038fd","","https://huuhuynh2k2-droid.github.io/thu-vien-y-khoa/docs/kiem-soat-duong-huyet-noi-vien-ada-2026.html"],
+    ["Báng bụng ở bệnh nhân xơ gan & Kỹ thuật chọc tháo dịch báng (BSG 2020)","TH",3,0,1,0,"","2026-10-05","3f0cb1425c8181708271ec66296e7431","3f0cb1425c8181708271ec66296e7431","","https://huuhuynh2k2-droid.github.io/thu-vien-y-khoa/docs/bang-bung-xo-gan-choc-thao-dich-bang.html"],
     ["Tổng quan bệnh lý đường mật","TH",2,2,1,0,"E","2026-10-04","3efcb1425c8181d7bf8ffef3897921bd","3efcb1425c8181d7bf8ffef3897921bd","2026-10-05",""],
     ["KDIGO 2026 AKI/AKD — Chương 1: Định nghĩa, nhận diện, phân loại (+ trẻ em, sơ sinh)","TN",3,0,0,0,"","2026-09-29","3eacb1425c81816b9a62e5ab31d123d1","3eacb1425c81816b9a62e5ab31d123d1","","https://huuhuynh2k2-droid.github.io/thu-vien-y-khoa/docs/kdigo-2026-aki-akd-chuong1.html"],
     ["ESC 2026 Guideline Suy tim — Bản tổng hợp/viết lại đầy đủ (5 phần)","TM",3,0,0,0,"","2026-09-28","3e9cb1425c818107af6bdc8574021f2d","3e9cb1425c818107af6bdc8574021f2d","","https://huuhuynh2k2-droid.github.io/thu-vien-y-khoa/docs/esc-2026-suy-tim-index.html"],

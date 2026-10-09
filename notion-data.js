@@ -2,8 +2,8 @@
 // rows (125 chủ đề): [tên, mã hệ, loại T/O, bắt đầu, kết thúc, id bài học, trạng thái 0/1/2, tự tin, số lần ôn, ngày ôn gần nhất, ghi chú, id trang, ngày học xong]
 // kho: [tên, mã hệ, tầng 1-3, trạng thái, ưu tiên 0-3, tự tin, E/N, cập nhật, id bài, id trang, ngày học xong, link bản dịch (nếu có)]
 window.NOTION_DATA = {
-  snapshot: "2026-10-08",
-  generatedAt: "2026-10-08T09:17:07.774Z",
+  snapshot: "2026-10-09",
+  generatedAt: "2026-10-09T15:27:16.409Z",
   chapters: {"NT":"Nội tiết","TH":"Tiêu hóa","TM":"Tim mạch","HH":"Hô hấp","TN":"Thận – Niệu","TK":"Thần kinh","CX":"Cơ xương khớp","MA":"Máu – Bạch huyết","MD":"Miễn dịch","SP":"Sản phụ khoa","TT":"Tâm thần","DA":"Da","DC":"Đa cơ quan & Khác","BS":"Nhóm bổ sung"},
   rows: [
     ["Rối loạn đường huyết","NT","T","2026-09-14","2026-09-15","3c8cb1425c8180d6b9e1e094e26e1ed1",2,0,0,"","","3cbcb1425c818102be96d7b72393e888","2026-09-18"],
@@ -147,6 +147,7 @@ window.NOTION_DATA = {
     ["Ôn tập tổng hợp — Nhóm bổ sung (121-125 - cần đối chiếu)","BS","O","2027-08-30","2027-09-02","",0,0,0,"","","3cbcb1425c818188ac2af349b65df80d",""]
   ],
   kho: [
+    ["Điều trị Viêm phổi — kháng sinh, PK/PD, steroid, oxy và vi khuẩn đa kháng (slide BS Trần Tuấn Anh)","HH",2,0,1,0,"E","2026-10-09","3f4cb1425c81811595aae29d2d0c0d39","3f4cb1425c81811595aae29d2d0c0d39","","https://huuhuynh2k2-droid.github.io/thu-vien-y-khoa/docs/dieu-tri-viem-phoi.html"],
     ["Tiếp cận Viêm phổi — từ sinh lý bệnh đến điều trị (slide BS Trần Tuấn Anh)","HH",2,0,1,0,"E","2026-10-08","3f3cb1425c8181e6b507d501a967814d","3f3cb1425c8181e6b507d501a967814d","","https://huuhuynh2k2-droid.github.io/thu-vien-y-khoa/docs/tiep-can-viem-phoi.html"],
     ["Theo dõi và quản lý đường huyết trong bệnh thận mạn tiến triển (Endocrine Reviews 2020)","NT",3,0,2,0,"","2026-10-07","3f2cb1425c818168b3b3d8eae1e0ad19","3f2cb1425c818168b3b3d8eae1e0ad19","","https://huuhuynh2k2-droid.github.io/thu-vien-y-khoa/docs/kiem-soat-duong-huyet-btm-tien-trien.html"],
     ["CLS A1 · Bộ xét nghiệm gan: AST, ALT, ALP, GGT và tỷ số R","TH",1,0,1,0,"","2026-10-06","3f1cb1425c81819c9da0f8d9c940c1e6","3f1cb1425c81819c9da0f8d9c940c1e6","","https://huuhuynh2k2-droid.github.io/thu-vien-y-khoa/docs/cls-a1-men-gan-ty-so-r.html"],
